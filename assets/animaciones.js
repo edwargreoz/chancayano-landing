@@ -11,18 +11,14 @@
   barra.setAttribute('aria-hidden', 'true');
   document.body.appendChild(barra);
 
-  let pendiente = false;
+  // Una sola escritura de estilo por evento de scroll: no depende de requestAnimationFrame.
   const medirProgreso = () => {
-    pendiente = false;
     const maximo = raiz.scrollHeight - window.innerHeight;
     const avance = maximo > 0 ? Math.min(1, Math.max(0, window.scrollY / maximo)) : 0;
     barra.style.transform = `scaleX(${avance.toFixed(4)})`;
   };
-  const pedirProgreso = () => {
-    if (!pendiente) { pendiente = true; requestAnimationFrame(medirProgreso); }
-  };
-  window.addEventListener('scroll', pedirProgreso, { passive: true });
-  window.addEventListener('resize', pedirProgreso);
+  window.addEventListener('scroll', medirProgreso, { passive: true });
+  window.addEventListener('resize', medirProgreso);
   medirProgreso();
 
   // 2. Botón para volver al inicio: aparece tras el primer pantallazo
