@@ -31,7 +31,7 @@
   }
 }
 </script>
-<link rel="preload" as="image" href="assets/img/cogollo-banner.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/entry-content-post-2024.webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/tokens.css?v=3">
 <link rel="stylesheet" href="assets/animaciones.css?v=2">
 <script>
@@ -119,52 +119,80 @@
     .cabecera .solo-ancho { display: none; }
   }
 
-  /* Hero */
-  .hero { position: relative; isolation: isolate; min-height: 100svh; display: grid; align-items: center; padding-block: 120px 72px; overflow: hidden; }
+  /* Hero · patrón «producto a escala con ficha de compra».
+     La botella Cogollo es la protagonista; a su lado, la ficha reúne tamaño, precio y pedido.
+     Escritorio: texto y ficha a la izquierda, centrados a la altura de la botella; la foto a la derecha.
+     Móvil: título, foto, ficha (precio y botón juntos) y la frase de apoyo al final. */
+  .sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .hero { position: relative; isolation: isolate; min-height: 100svh; display: grid; align-items: center; padding-block: 104px 64px; overflow: hidden; }
   /* Fusión con la sección siguiente: el hero termina en el mismo azul profundo con el que empieza Líneas */
   .hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 32%; z-index: -1; background: linear-gradient(180deg, rgb(10 17 34 / 0) 0%, var(--ch-noche-profunda) 100%); pointer-events: none; }
-  /* Fondo de campo de caña: la capa de noche a la izquierda asegura el contraste del texto */
-  .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(16 26 49 / .94) 0%, rgb(16 26 49 / .78) 48%, rgb(16 26 49 / .42) 100%), url("assets/img/fondo-cana.webp") center / cover no-repeat; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 100%); }
-  /* Rejilla del hero. Escritorio: título y acciones a la izquierda, botella a la derecha ocupando las dos filas.
-     Móvil: título, botella y acciones, para que la botella y el botón se vean sin desplazar. */
-  .hero .wrap { display: grid; gap: var(--ch-esp-5); grid-template-areas: "titulo" "media" "accion"; }
+  /* Fondo: campo de caña con velo azul noche, más denso donde va el texto */
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(16 26 49 / .95) 0%, rgb(16 26 49 / .82) 45%, rgb(16 26 49 / .5) 100%), url("assets/img/fondo-cana.webp") center / cover no-repeat; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 100%); }
+  .hero .wrap { display: grid; gap: var(--ch-esp-5); grid-template-columns: minmax(0, 1fr); grid-template-areas: "titulo" "media" "compra" "lead"; }
   .hero-titulo { grid-area: titulo; }
   .escena-parallax { grid-area: media; }
-  .hero-accion { grid-area: accion; }
-  .hero h1 { font-size: clamp(2.5rem, 4.4vw + 1rem, 5.5rem); line-height: .98; letter-spacing: -0.03em; }
+  .ficha-compra { grid-area: compra; }
+  .hero-apoyo { grid-area: lead; }
+  .hero h1 { font-size: clamp(2.5rem, 3vw + 1rem, 4.5rem); line-height: .98; letter-spacing: -0.03em; }
   .hero h1 .l { white-space: nowrap; }
   .hero h1 .l--dorado { color: var(--ch-dorado-brillo); }
-  .hero .lead { margin-top: var(--ch-esp-5); color: var(--ch-blanco); font-size: 1.1875rem; max-width: 36ch; }
-  .garantias { display: grid; grid-template-columns: repeat(3, auto); gap: var(--ch-esp-5); justify-content: start; margin: var(--ch-esp-7) 0 0; padding: 0; list-style: none; }
-  .garantias li { display: grid; gap: 2px; }
-  .garantias strong { font: 500 clamp(1.5rem, 1.6vw + 1rem, 2.25rem)/1 var(--ch-font-titular); color: var(--ch-dorado-brillo); font-variant-numeric: tabular-nums; }
-  .garantias span { font-size: .9375rem; color: var(--ch-texto-noche-suave); }
+  .hero .lead { color: var(--ch-blanco); font-size: 1.125rem; max-width: 40ch; }
+  .hero-mas { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: var(--ch-esp-2); font-weight: 600; color: var(--ch-dorado-brillo); text-decoration: none; }
+  .hero-mas::after { content: "↓"; transition: transform 240ms var(--ch-expo); }
+  @media (hover: hover) and (pointer: fine) { .hero-mas:hover::after { transform: translateY(3px); } }
+
+  /* La foto: pieza oficial completa, cuadrada, dentro de un marco que flota sobre el campo.
+     Es el único objeto con sombra del hero e inclina con el puntero. */
   .escena { position: relative; perspective: 1100px; isolation: isolate; }
-  /* El marco flota sobre el campo e inclina con el puntero: es el único objeto con sombra del hero. */
-  .marco-hero { position: relative; margin: 0; border-radius: var(--ch-radio-tarjeta); overflow: hidden; box-shadow: 0 50px 80px -30px rgb(0 0 0 / .7); transform: rotateY(calc(var(--ry, 0) * 1deg)) rotateX(calc(var(--rx, 0) * 1deg)); transform-style: preserve-3d; }
-  .marco-hero img { width: 100%; }
-  @media (max-width: 959px) {
-    .hero { padding-block: 92px 48px; min-height: auto; }
-    .hero::before { background: linear-gradient(180deg, rgb(16 26 49 / .9) 0%, rgb(16 26 49 / .72) 60%, rgb(16 26 49 / .9) 100%), url("assets/img/fondo-cana.webp") center / cover no-repeat; }
-    .hero .lead { margin-top: var(--ch-esp-4); font-size: 1.0625rem; }
-    .hero .acciones { margin-top: 0; }
-    .garantias { margin-top: var(--ch-esp-6); }
-  }
-  /* Desde 560 px las cifras van antes que los botones; en el teléfono los botones suben para verse sin desplazar */
-  @media (min-width: 560px) {
-    .hero-accion { display: flex; flex-direction: column; }
-    .hero-accion .garantias { order: -1; margin: var(--ch-esp-2) 0 var(--ch-esp-7); }
-    .hero-accion .acciones { margin-top: 0; }
+  .marco-hero { position: relative; margin: 0; aspect-ratio: 1; border-radius: var(--ch-radio-tarjeta); overflow: hidden; background: var(--ch-noche-profunda); box-shadow: 0 50px 80px -30px rgb(0 0 0 / .7); transform: rotateY(calc(var(--ry, 0) * 1deg)) rotateX(calc(var(--rx, 0) * 1deg)); transform-style: preserve-3d; }
+  .marco-hero img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Ficha de compra: nombre y grado; tamaño y precio en la misma fila; el botón a todo el ancho debajo.
+     Superficies rellenas, sin contorno. */
+  .ficha-compra { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "nombre nombre" "tamanos precio" "boton boton" "nota nota"; align-items: center; gap: var(--ch-esp-4) var(--ch-esp-5); padding: var(--ch-esp-5); background: var(--ch-noche-profunda); border-radius: var(--ch-radio-tarjeta); max-width: 30rem; }
+  .fc-nombre { grid-area: nombre; font: 500 1.375rem/1.2 var(--ch-font-titular); }
+  .fc-grado { color: var(--ch-dorado-brillo); white-space: nowrap; }
+  .fc-tamanos { grid-area: tamanos; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ch-esp-2); margin: 0; padding: 0; border: 0; min-width: 0; }
+  .fc-tamanos label { position: relative; display: block; cursor: pointer; }
+  .fc-tamanos input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+  .fc-tamanos span { display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: var(--ch-radio-boton); background: rgb(255 255 255 / .07); color: var(--ch-texto-noche-suave); font-weight: 600; white-space: nowrap; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo), scale 160ms var(--ch-expo); }
+  .fc-tamanos input:checked + span { background: rgb(197 162 100 / .24); color: var(--ch-dorado-brillo); }
+  .fc-tamanos input:focus-visible + span { outline: 2px solid var(--ch-dorado); outline-offset: 3px; }
+  .fc-tamanos label:active span { scale: .97; }
+  @media (hover: hover) and (pointer: fine) { .fc-tamanos input:not(:checked):hover + span { background: rgb(255 255 255 / .12); color: var(--ch-blanco); } }
+  .fc-compra { display: contents; }
+  .fc-precio { grid-area: precio; font: 500 2rem/1 var(--ch-font-titular); color: var(--ch-blanco); font-variant-numeric: tabular-nums; text-align: right; }
+  .fc-precio output { display: inline-block; }
+  .fc-precio output.cambio { animation: ch-precio 180ms var(--ch-expo); }
+  @keyframes ch-precio { from { opacity: .2; transform: translateY(4px); } }
+  .fc-compra .boton { grid-area: boton; width: 100%; }
+  .fc-nota { grid-area: nota; font-size: .875rem; line-height: 1.45; color: var(--ch-texto-noche-suave); }
+
+  /* Teléfono: todo en una columna; título, foto y ficha caben en la primera pantalla */
+  @media (max-width: 1079px) {
+    .hero { padding-block: 88px 48px; min-height: auto; }
+    .hero::before { background: linear-gradient(180deg, rgb(16 26 49 / .9) 0%, rgb(16 26 49 / .74) 60%, rgb(16 26 49 / .92) 100%), url("assets/img/fondo-cana.webp") center / cover no-repeat; }
   }
   @media (max-width: 559px) {
-    .garantias { gap: var(--ch-esp-4); }
-    .garantias span { font-size: .875rem; }
+    .hero .wrap { gap: var(--ch-esp-4); }
+    .hero .lead { font-size: 1.0625rem; }
+    .ficha-compra { padding: var(--ch-esp-4); gap: var(--ch-esp-3) var(--ch-esp-4); }
+    .fc-nombre { font-size: 1.25rem; }
+    .fc-precio { font-size: 1.75rem; }
   }
-  @media (min-width: 960px) {
-    .hero .wrap { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); grid-template-areas: "titulo media" "accion media"; column-gap: var(--ch-esp-8); row-gap: 0; align-items: center; }
-    .hero-titulo { align-self: end; }
-    .hero-accion { align-self: start; }
-    .escena-parallax { justify-self: end; width: 100%; }
+  /* Tableta: título arriba; foto a la izquierda y ficha con la frase de apoyo a la derecha */
+  @media (min-width: 700px) and (max-width: 1079px) {
+    .hero .wrap { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-rows: auto auto 1fr; grid-template-areas: "titulo titulo" "media compra" "media lead"; column-gap: var(--ch-esp-5); }
+    .ficha-compra { align-self: start; }
+    .hero-apoyo { align-self: start; }
+  }
+  /* Escritorio: texto y ficha a la izquierda, centrados a la altura de la botella */
+  @media (min-width: 1080px) {
+    .hero .wrap { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 1fr auto auto auto 1fr; grid-template-areas: ". media" "titulo media" "lead media" "compra media" ". media"; column-gap: var(--ch-esp-8); row-gap: 0; }
+    .hero .lead { margin-top: var(--ch-esp-5); }
+    .hero-apoyo { margin-bottom: var(--ch-esp-6); }
+    .escena-parallax { width: min(80svh, 720px, 52vw); align-self: center; }
   }
 
   /* Carga del hero: el título sube por líneas, la botella se abre como un obturador */
@@ -174,9 +202,8 @@
   @keyframes ch-enfoque { from { transform: scale(1.18); } }
   .hero h1 .l { display: block; animation: ch-linea var(--ch-dur-hero) var(--ch-expo) both; }
   .hero h1 .l:nth-child(2) { animation-delay: 90ms; }
-  .hero .lead, .hero .acciones, .hero .garantias { animation: ch-aparecer var(--ch-dur-hero) var(--ch-expo) both; animation-delay: 300ms; }
-  .hero .acciones { animation-delay: 380ms; }
-  .hero .garantias { animation-delay: 460ms; }
+  .hero-apoyo, .ficha-compra { animation: ch-aparecer var(--ch-dur-hero) var(--ch-expo) both; animation-delay: 300ms; }
+  .ficha-compra { animation-delay: 400ms; }
   .marco-hero { animation: ch-obturador 1300ms var(--ch-expo) backwards; animation-delay: 150ms; }
   .marco-hero img { animation: ch-enfoque 1800ms var(--ch-expo) backwards; animation-delay: 150ms; }
 
@@ -210,6 +237,7 @@
      las tres piezas apaisadas (macerados, cocktails, nutrición) en fila y la edición especial cierra en franja.
      Cada pieza aparece una sola vez en la página. */
   .linea--h .marco { aspect-ratio: 1; }
+  .linea--banner .marco { aspect-ratio: 1400 / 835; align-self: center; }
   .linea--h h3, .linea--franja h3 { font-size: clamp(1.875rem, 1.4vw + 1.2rem, 2.5rem); }
   .ficha { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ch-esp-3); margin: var(--ch-esp-3) 0 var(--ch-esp-2); }
   .ficha dt { font-size: .875rem; color: var(--ch-texto-noche-suave); }
@@ -369,7 +397,7 @@
   .sin-timeline .origen-foto:not(.visible) { opacity: 0; transform: translateY(28px); }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero h1 .l, .hero .lead, .hero .acciones, .hero .garantias, .marco-hero, .marco-hero img { animation: none; }
+    .hero h1 .l, .hero-apoyo, .ficha-compra, .marco-hero, .marco-hero img, .fc-precio output.cambio { animation: none; }
     .marco-hero { transform: none; }
     .linea:hover .marco img { transform: none; }
     .linea:hover { translate: none; }
@@ -471,27 +499,32 @@
   <section class="hero oscuro" id="inicio">
     <div class="wrap">
       <div class="hero-titulo">
-        <h1><span class="l">Aguardiente de</span><span class="l l--dorado">Chancay Baños</span></h1>
-        <p class="lead">Aguardiente artesanal peruano de caña de azúcar, hecho en Santa Cruz, Cajamarca. Destilados, macerados y cocktails de 50 ml a 500 ml.</p>
+        <h1><span class="l">Cogollo Premium</span><span class="l l--dorado">de Chancay Baños</span></h1>
       </div>
       <div class="escena-parallax">
         <div class="escena" id="escena">
           <figure class="marco-hero">
-            <img src="assets/img/cogollo-banner.webp" alt="Aguardiente Cogollo Premium de 500 ml sobre una mesa de madera, con un vaso y una ventana al cañaveral" width="1400" height="835" fetchpriority="high">
+            <img src="assets/img/entry-content-post-2024.webp" alt="Botella de Aguardiente Cogollo Premium de 500 ml sobre una mesa de madera, junto a un vaso y trozos de caña, con una ventana al cañaveral" width="1500" height="1500" fetchpriority="high">
           </figure>
         </div>
       </div>
-      <div class="hero-accion">
-        <div class="acciones">
-          <a class="boton boton--dorado" href="#" data-pronto aria-haspopup="dialog">Ver tienda</a>
-          <a class="boton boton--fantasma" href="#presentaciones">Ver presentaciones</a>
-        </div>
-        <ul class="garantias">
-          <li><strong>2002</strong><span>Elaborado desde</span></li>
-          <li><strong>5</strong><span>Líneas de producto</span></li>
-          <li><strong>50–500</strong><span>Mililitros por botella</span></li>
-        </ul>
+      <div class="hero-apoyo">
+        <p class="lead">Aguardiente artesanal de caña de azúcar, destilado en Santa Cruz, Cajamarca, desde 2002. También hay destilados, macerados y cocktails.</p>
+        <a class="hero-mas" href="#lineas">Ver las líneas</a>
       </div>
+      <form class="ficha-compra" id="ficha-hero" aria-labelledby="fc-nombre" onsubmit="return false">
+        <p class="fc-nombre" id="fc-nombre">Aguardiente Cogollo Premium,<span class="fc-grado"> 56 % vol.</span></p>
+        <fieldset class="fc-tamanos">
+          <legend class="sr">Tamaño de la botella</legend>
+          <label><input type="radio" name="tamano-hero" value="500" checked><span>500 ml</span></label>
+          <label><input type="radio" name="tamano-hero" value="50"><span>50 ml</span></label>
+        </fieldset>
+        <div class="fc-compra">
+          <p class="fc-precio"><span class="sr">Precio: </span><output id="fc-precio" for="ficha-hero" aria-live="polite">S/ 70.00</output></p>
+          <a class="boton boton--dorado" id="fc-pedir" href="https://wa.me/51901681957?text=Hola%2C%20quiero%20pedir%20Aguardiente%20Cogollo%20Premium%20500%20ml%20(S%2F%2070.00).">Pedir por WhatsApp</a>
+        </div>
+        <p class="fc-nota">Venta solo a mayores de 18 años. Tomar bebidas alcohólicas en exceso es dañino.</p>
+      </form>
     </div>
   </section>
 
@@ -503,8 +536,8 @@
         <div class="filete"></div>
       </div>
       <div class="lineas">
-        <a class="linea linea--h revela" href="#" data-pronto aria-haspopup="dialog">
-          <div class="marco"><img src="assets/img/entry-content-post-2024.webp" alt="Aguardiente Cogollo Premium de 500 ml sobre una mesa de madera, junto a una ventana al cañaveral" width="1500" height="1500" loading="lazy"></div>
+        <a class="linea linea--h linea--banner revela" href="#" data-pronto aria-haspopup="dialog">
+          <div class="marco"><img src="assets/img/cogollo-banner.webp" alt="Aguardiente Cogollo Premium de 500 ml sobre una mesa de madera, con un vaso y una ventana al cañaveral" width="1400" height="835" loading="lazy"></div>
           <div class="texto"><h3>Premium</h3><p>Aguardiente Cogollo, el más alto de la casa.</p><dl class="ficha"><div><dt>Grado</dt><dd>56 % vol.</dd></div><div><dt>500 ml</dt><dd>S/ 70.00</dd></div><div><dt>50 ml</dt><dd>S/ 10.00</dd></div></dl><span class="ir">Ver en la tienda</span></div>
         </a>
         <a class="linea linea--h revela" href="#" data-pronto aria-haspopup="dialog">
@@ -752,11 +785,26 @@
     const arrancar = () => { if (!activo) { activo = true; requestAnimationFrame(paso); } };
     escena.addEventListener('pointermove', (e) => {
       const r = escena.getBoundingClientRect();
-      tx = ((e.clientX - r.left) / r.width - 0.5) * 8;
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 8; // ±4°
       ty = -((e.clientY - r.top) / r.height - 0.5) * 6;
       arrancar();
     });
     escena.addEventListener('pointerleave', () => { tx = 0; ty = 0; arrancar(); });
+  }
+
+  // Ficha del hero: el tamaño cambia el precio y el mensaje de WhatsApp
+  const fichaHero = document.getElementById('ficha-hero');
+  if (fichaHero) {
+    const precios = { '500': 'S/ 70.00', '50': 'S/ 10.00' };
+    const salida = document.getElementById('fc-precio');
+    const pedir = document.getElementById('fc-pedir');
+    fichaHero.addEventListener('change', (e) => {
+      const ml = e.target.value; if (!precios[ml]) return;
+      salida.textContent = precios[ml];
+      salida.classList.remove('cambio'); void salida.offsetWidth; salida.classList.add('cambio');
+      const texto = `Hola, quiero pedir Aguardiente Cogollo Premium ${ml} ml (${precios[ml]}).`;
+      pedir.href = 'https://wa.me/51901681957?text=' + encodeURIComponent(texto);
+    });
   }
 
   // ───── Carrusel 3D ─────
