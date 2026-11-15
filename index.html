@@ -206,28 +206,30 @@
   .linea .ir { display: inline-flex; align-items: center; gap: 8px; margin-top: var(--ch-esp-2); font-weight: 600; font-size: 1rem; color: var(--ch-dorado-brillo); }
   .linea .ir::after { content: "→"; transition: transform 240ms var(--ch-expo); }
   .linea:focus-visible .ir::after { transform: translateX(6px); }
-  .linea--principal h3 { font-size: clamp(2rem, 1.6vw + 1.25rem, 2.75rem); }
-  .ficha { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ch-esp-4); margin: var(--ch-esp-3) 0 0; }
+  /* Orden del mosaico: las dos piezas cuadradas de aguardiente van en tarjetas horizontales lado a lado,
+     las tres piezas apaisadas (macerados, cocktails, nutrición) en fila y la edición especial cierra en franja.
+     Cada pieza aparece una sola vez en la página. */
+  .linea--h .marco { aspect-ratio: 1; }
+  .linea--h h3, .linea--franja h3 { font-size: clamp(1.875rem, 1.4vw + 1.2rem, 2.5rem); }
+  .ficha { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ch-esp-3); margin: var(--ch-esp-3) 0 var(--ch-esp-2); }
   .ficha dt { font-size: .875rem; color: var(--ch-texto-noche-suave); }
-  .ficha dd { margin: 2px 0 0; font: 500 clamp(1.25rem, .8vw + 1rem, 1.75rem)/1.1 var(--ch-font-titular); color: var(--ch-dorado-brillo); font-variant-numeric: tabular-nums; }
+  .ficha dd { margin: 2px 0 0; font: 500 clamp(1.125rem, .6vw + 1rem, 1.5rem)/1.1 var(--ch-font-titular); color: var(--ch-dorado-brillo); font-variant-numeric: tabular-nums; }
   @media (min-width: 720px) {
-    .lineas { grid-template-columns: repeat(2, 1fr); }
-    .linea--principal, .linea--franja { grid-column: 1 / -1; }
+    .lineas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .linea--h { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+    .linea--h .texto, .linea--ancha .texto { align-content: center; padding: var(--ch-esp-6); }
+    .linea--ancha { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .linea--ancha .marco { aspect-ratio: auto; height: 100%; min-height: 240px; }
   }
   @media (min-width: 1100px) {
-    .lineas { grid-template-columns: repeat(4, 1fr); }
-    .linea--principal { grid-column: span 2; grid-row: span 2; }
-    .linea--principal .texto { flex: 1; grid-template-rows: auto auto 1fr auto; padding: var(--ch-esp-6); }
-    .linea--principal .ficha { align-self: end; }
-    .linea--franja { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); }
-    .linea--franja .marco { aspect-ratio: 1; }
-    .linea--franja .texto { align-content: center; padding: var(--ch-esp-7); }
-    .linea--franja h3 { font-size: clamp(2rem, 1.6vw + 1.25rem, 2.75rem); }
-  }
-  @media (min-width: 720px) and (max-width: 1099px) {
-    .linea--franja { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-    .linea--franja .marco { aspect-ratio: 1; }
-    .linea--franja .texto { align-content: center; }
+    .lineas { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .linea { grid-column: span 2; }
+    .linea--h { grid-column: span 3; }
+    .linea--ancha { grid-column: span 2; display: flex; }
+    .linea--ancha .marco { aspect-ratio: 5 / 3; height: auto; min-height: 0; }
+    .linea--ancha .texto { padding: var(--ch-esp-5) var(--ch-esp-5) var(--ch-esp-6); align-content: start; }
+    .linea--franja { grid-column: 1 / -1; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); }
+    .linea--franja .texto { padding: var(--ch-esp-7); }
   }
 
   /* ───── Carrusel 3D (coverflow) ───── */
@@ -501,13 +503,13 @@
         <div class="filete"></div>
       </div>
       <div class="lineas">
-        <a class="linea linea--principal revela" href="#" data-pronto aria-haspopup="dialog">
-          <div class="marco"><img src="assets/img/banner-cogollo-premium-1200x716.webp" alt="Aguardiente Cogollo Premium" width="1200" height="716" loading="lazy"></div>
-          <div class="texto"><h3>Premium</h3><p>Aguardiente Cogollo, el más alto de la casa.</p><dl class="ficha"><div><dt>Grado</dt><dd>56 % vol.</dd></div><div><dt>Formatos</dt><dd>500 y 50 ml</dd></div><div><dt>Desde</dt><dd>S/ 70.00</dd></div></dl><span class="ir">Ver en la tienda</span></div>
+        <a class="linea linea--h revela" href="#" data-pronto aria-haspopup="dialog">
+          <div class="marco"><img src="assets/img/entry-content-post-2024.webp" alt="Aguardiente Cogollo Premium de 500 ml sobre una mesa de madera, junto a una ventana al cañaveral" width="1500" height="1500" loading="lazy"></div>
+          <div class="texto"><h3>Premium</h3><p>Aguardiente Cogollo, el más alto de la casa.</p><dl class="ficha"><div><dt>Grado</dt><dd>56 % vol.</dd></div><div><dt>500 ml</dt><dd>S/ 70.00</dd></div><div><dt>50 ml</dt><dd>S/ 10.00</dd></div></dl><span class="ir">Ver en la tienda</span></div>
         </a>
-        <a class="linea revela" href="#" data-pronto aria-haspopup="dialog">
-          <div class="marco"><img src="assets/img/destilados.webp" alt="Aguardiente Cogollo en mesa de madera" width="1400" height="835" loading="lazy"></div>
-          <div class="texto"><h3>Destilados</h3><p>Aguardiente tradicional de caña.</p><span class="ir">Ver en la tienda</span></div>
+        <a class="linea linea--h revela" href="#" data-pronto aria-haspopup="dialog">
+          <div class="marco"><img src="assets/img/catalogo-chancayano-1-1024x1024.webp" alt="Aguardiente Tradicional de 500 ml, reposado 2 años, en un camino entre cañas al atardecer" width="1024" height="1024" loading="lazy"></div>
+          <div class="texto"><h3>Destilados</h3><p>Aguardiente tradicional de caña, también reposado dos años.</p><dl class="ficha"><div><dt>Grado</dt><dd>46 % vol.</dd></div><div><dt>Formatos</dt><dd>187 y 500 ml</dd></div><div><dt>Desde</dt><dd>S/ 10.00</dd></div></dl><span class="ir">Ver en la tienda</span></div>
         </a>
         <a class="linea revela" href="#" data-pronto aria-haspopup="dialog">
           <div class="marco"><img src="assets/img/macerado-de-quina-chancayano-1200x716.webp" alt="Macerados de quina de Chancayano en distintas presentaciones" width="1200" height="716" loading="lazy"></div>
@@ -517,11 +519,11 @@
           <div class="marco"><img src="assets/img/cocktails-banner-chancayano-25.webp" alt="Cocktails de Chancayano de distintos sabores" width="1000" height="571" loading="lazy"></div>
           <div class="texto"><h3>Cocktails</h3><p>Fresa, café, maíz morado, maracumango y maracuyá.</p><span class="ir">Ver en la tienda</span></div>
         </a>
-        <a class="linea revela" href="#" data-pronto aria-haspopup="dialog">
+        <a class="linea linea--ancha revela" href="#" data-pronto aria-haspopup="dialog">
           <div class="marco"><img src="assets/img/linea-de-nutricion-chancayano-768x439.webp" alt="Jugo y miel de caña de la línea de nutrición" width="768" height="439" loading="lazy"></div>
           <div class="texto"><h3>Nutrición</h3><p>Jugo y miel de caña.</p><span class="ir">Ver en la tienda</span></div>
         </a>
-        <a class="linea linea--franja revela" href="#" data-pronto aria-haspopup="dialog">
+        <a class="linea linea--h linea--franja revela" href="#" data-pronto aria-haspopup="dialog">
           <div class="marco"><img src="assets/img/carnaval-maracumango-500.webp" alt="Cocktail de maracumango, edición especial Carnaval de Cajamarca" width="1100" height="1100" loading="lazy"></div>
           <div class="texto"><h3>Edición especial</h3><p>Cocktail de maracumango, Carnaval de Cajamarca. 500 ml, 15 % vol. Desde S/ 35.00.</p><span class="ir">Ver edición especial</span></div>
         </a>
@@ -533,17 +535,11 @@
     <div class="wrap">
       <div class="intro">
         <h2 id="t-pres">Aguardientes y presentaciones</h2>
-        <p>Elige la botella con las flechas. Cada presentación tiene su ficha con precio y tamaño.</p>
+        <p>Tradicional y Añejo 2 años, en 187 y 500 ml. Elige la botella con las flechas para ver su precio.</p>
         <div class="filete"></div>
       </div>
       <div class="carrusel carrusel--claro" data-carrusel data-nombre-carrusel="Presentaciones">
         <ul class="carrusel-pista">
-          <li class="diapo" data-nombre="Cogollo Premium" data-detalle="Aguardiente premium · 56 % vol." data-tamanos data-precio="S/ 70.00">
-            <a class="diapo-enlace" href="#" data-pronto aria-haspopup="dialog">
-              <img data-tam="500" src="assets/img/c-1200x1200.webp" alt="Aguardiente Cogollo Premium de 500 ml" width="1200" height="1200" loading="lazy">
-              <img data-tam="50" src="assets/img/catalogo-chancayano-sp-page-0002-24-1024.webp" alt="Aguardiente Cogollo Premium de 50 ml" width="1024" height="1024" loading="lazy" hidden>
-            </a>
-          </li>
           <li class="diapo" data-nombre="Aguardiente Tradicional 500 ml" data-detalle="46 % vol. · caja de 12: S/ 198.00" data-precio="Desde S/ 35.00">
             <a class="diapo-enlace" href="#" data-pronto aria-haspopup="dialog">
               <img src="assets/img/tradicional-500.webp" alt="Aguardiente Tradicional de 500 ml" width="1150" height="1150" loading="lazy">
@@ -564,11 +560,6 @@
         <div class="carrusel-info">
           <h3 class="info-nombre"></h3>
           <p class="info-detalle"></p>
-          <fieldset class="tamanos" hidden>
-            <legend>Tamaño</legend>
-            <label><input type="radio" name="cogollo" value="500" checked><span>500 ml</span></label>
-            <label><input type="radio" name="cogollo" value="50"><span>50 ml</span></label>
-          </fieldset>
           <p class="info-precio"></p>
           <a class="boton boton--primario info-ir" href="#" data-pronto aria-haspopup="dialog">Ver producto</a>
         </div>
@@ -587,7 +578,7 @@
   <section class="seccion oscuro" id="origen" aria-labelledby="t-origen">
     <div class="wrap origen">
       <figure class="origen-foto">
-        <img src="assets/img/entry-content-post-2024.webp" alt="Aguardiente Cogollo junto a una ventana que da al cañaveral" width="1500" height="1500" loading="lazy">
+        <img src="assets/img/catalogo-chancayano-sp-page-0002-24-1024.webp" alt="Aguardiente Cogollo Premium de 50 ml, elaborado desde 2002, sobre una barra de madera" width="1024" height="1024" loading="lazy">
       </figure>
       <div class="revela">
         <h2 id="t-origen">Caña de Chancay Baños, Santa Cruz</h2>
