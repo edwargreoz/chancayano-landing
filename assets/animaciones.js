@@ -54,4 +54,20 @@
       boton.addEventListener('pointerleave', () => { boton.style.transform = ''; });
     });
   }
+  // 4. Pantalla de estado para los enlaces sin destino todavía (no salen a otros sitios)
+  const estado = document.getElementById('pantalla-estado');
+  if (estado) {
+    document.addEventListener('click', (e) => {
+      // El carrusel ya resolvió el clic (cambio de diapositiva): no abrir la pantalla.
+      if (e.defaultPrevented) return;
+      if (!e.target.closest('[data-pronto]')) return;
+      e.preventDefault();
+      if (typeof estado.showModal === 'function') estado.showModal();
+      else estado.setAttribute('open', '');
+      estado.querySelector('.estado-cerrar').focus();
+    });
+    estado.querySelector('.estado-cerrar').addEventListener('click', () => estado.close());
+    // Clic fuera de la caja cierra la pantalla
+    estado.addEventListener('click', (e) => { if (e.target === estado) estado.close(); });
+  }
 })();

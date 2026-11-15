@@ -57,6 +57,54 @@
   will-change: transform;
 }
 
+/* Pantalla de estado: función aún no disponible (diálogo nativo). */
+.pantalla-estado {
+  border: 0;
+  padding: 0;
+  width: min(92vw, 440px);
+  background: transparent;
+  color: var(--ch-blanco);
+}
+
+.pantalla-estado::backdrop {
+  background: rgb(10 17 34 / .72);
+}
+
+.pantalla-estado__caja {
+  display: grid;
+  gap: var(--ch-esp-3);
+  padding: var(--ch-esp-6) var(--ch-esp-5);
+  text-align: center;
+  background: var(--ch-noche-profunda);
+  border: 1px solid var(--ch-dorado);
+  border-radius: var(--ch-radio-tarjeta);
+  box-shadow: var(--ch-sombra-tarjeta);
+}
+
+.pantalla-estado__etiqueta {
+  margin: 0;
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ch-dorado);
+}
+
+.pantalla-estado h2 {
+  margin: 0;
+  font-family: var(--ch-font-titular);
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.pantalla-estado p {
+  margin: 0;
+  color: var(--ch-texto-noche-suave);
+}
+
+.pantalla-estado .boton {
+  justify-self: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .volver-arriba,
   .iman {
