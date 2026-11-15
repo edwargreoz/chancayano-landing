@@ -454,6 +454,45 @@
     .carrusel-info .info-ir, .carrusel-info .tamanos { margin-top: 0; }
     .carrusel-controles { margin-top: var(--ch-esp-3); }
   }
+  /* ───── Secciones centradas, con el mismo estilo que el hero ─────
+     Cada sección abre con su palabra monumental (decorativa, aria-hidden), el título centrado,
+     el filete centrado y el contenido en el eje. La palabra entra con un ascenso corto y
+     vuelve a su sitio con el scroll; sin movimiento con prefers-reduced-motion. */
+  .palabra-sec { display: block; margin: 0 auto var(--ch-esp-5); font: 700 var(--tam, clamp(2.75rem, 12.5vw, 12rem))/.8 var(--ch-font-titular); letter-spacing: .01em; text-transform: uppercase; color: rgb(226 200 143 / .34); white-space: nowrap; text-align: center; user-select: none; pointer-events: none; }
+  .claro .palabra-sec, .niebla .palabra-sec { color: rgb(138 106 46 / .16); }
+  .intro { justify-items: center; text-align: center; }
+  .intro .filete { margin-inline: auto; }
+  .intro p { margin-inline: auto; max-width: 58ch; }
+  @media (min-width: 960px) {
+    .intro { grid-template-columns: minmax(0, 1fr); }
+    .intro p, .intro .filete { grid-column: auto; grid-row: auto; align-self: auto; padding-bottom: 0; }
+  }
+  /* Origen: una columna centrada, foto arriba, texto y cifras debajo */
+  .origen { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; gap: var(--ch-esp-6); }
+  .origen-foto { width: min(100%, 34rem); }
+  .origen .revela { display: grid; justify-items: center; }
+  .origen .revela .filete { margin-inline: auto; }
+  .origen .lead { max-width: 60ch; margin-inline: auto; }
+  .origen .cifras { width: min(100%, 52rem); margin-inline: auto; }
+  @media (max-width: 559px) {
+    .origen .cifras > div { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  }
+  /* Cierre: una columna centrada */
+  .cierre .wrap { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+  .cierre-texto { justify-items: center; text-align: center; }
+  .cierre .acciones { justify-self: center; }
+  @media (min-width: 960px) {
+    .cierre .wrap { grid-template-columns: minmax(0, 1fr); column-gap: 0; }
+    .cierre-texto { justify-items: center; text-align: center; }
+    .cierre .acciones { justify-self: center; margin: 0; }
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .palabra-sec { animation: ch-palabra-vista linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+    }
+  }
+  @keyframes ch-palabra-vista { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .palabra-sec { animation: none; } }
 </style>
 </head>
 <body>
@@ -517,6 +556,7 @@
 
   <section class="seccion oscuro" id="lineas" aria-labelledby="t-lineas">
     <div class="wrap">
+      <p class="palabra-sec" aria-hidden="true">Líneas</p>
       <div class="intro">
         <h2 id="t-lineas">Nuestras líneas</h2>
         <p>Cinco líneas y una edición especial, de la caña a la copa. Cada una abre su catálogo en la tienda.</p>
@@ -553,6 +593,7 @@
 
   <section class="seccion claro" id="presentaciones" aria-labelledby="t-pres">
     <div class="wrap">
+      <p class="palabra-sec" aria-hidden="true" style="--tam: clamp(2rem, 8.5vw, 9rem)">Aguardientes</p>
       <div class="intro">
         <h2 id="t-pres">Aguardientes y presentaciones</h2>
         <p>Tradicional y Añejo 2 años, en 187 y 500 ml. Elige la botella con las flechas para ver su precio.</p>
@@ -597,6 +638,7 @@
 
   <section class="seccion oscuro" id="origen" aria-labelledby="t-origen">
     <div class="wrap origen">
+      <p class="palabra-sec" aria-hidden="true">Origen</p>
       <figure class="origen-foto">
         <img src="assets/img/catalogo-chancayano-sp-page-0002-24-1024.webp" alt="Aguardiente Cogollo Premium de 50 ml, elaborado desde 2002, sobre una barra de madera" width="1024" height="1024" loading="lazy">
       </figure>
@@ -615,6 +657,7 @@
 
   <section class="seccion niebla" id="cocktails" aria-labelledby="t-cocktails">
     <div class="wrap">
+      <p class="palabra-sec" aria-hidden="true">Cocktails</p>
       <div class="intro">
         <h2 id="t-cocktails">Cocktails de la casa</h2>
         <p>Cinco sabores en 187 ml y 500 ml. Elige el formato y el precio se actualiza con la ficha.</p>
@@ -679,6 +722,7 @@
 
   <section class="seccion oscuro cierre" aria-labelledby="t-cierre">
     <div class="wrap revela">
+      <p class="palabra-sec" aria-hidden="true">Tienda</p>
       <div class="cierre-texto">
         <h2 id="t-cierre">Tu Chancayano, en la tienda</h2>
         <p>Pide en la tienda o escríbenos por WhatsApp.</p>
