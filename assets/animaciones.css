@@ -57,56 +57,142 @@
   will-change: transform;
 }
 
-/* Pantalla de estado: función aún no disponible (diálogo nativo). */
+/* Pantalla de estado: función aún no disponible (diálogo nativo).
+   Placa nocturna con una barra dorada que se carga al abrir, icono de reloj de arena,
+   cierre con aspa y salida hacia WhatsApp mientras la tienda no existe. */
 .pantalla-estado {
   border: 0;
   padding: 0;
-  width: min(92vw, 440px);
+  width: min(100vw - 32px, 460px);
+  max-width: none;
   background: transparent;
   color: var(--ch-blanco);
+  overflow: visible;
 }
 
 .pantalla-estado::backdrop {
-  background: rgb(10 17 34 / .72);
+  background: rgb(5 10 25 / .78);
 }
 
 .pantalla-estado__caja {
+  position: relative;
   display: grid;
-  gap: var(--ch-esp-3);
-  padding: var(--ch-esp-6) var(--ch-esp-5);
-  text-align: center;
+  gap: var(--ch-esp-4);
+  padding: var(--ch-esp-7) var(--ch-esp-6) var(--ch-esp-6);
   background: var(--ch-noche-profunda);
   border-radius: var(--ch-radio-tarjeta);
-  box-shadow: var(--ch-sombra-tarjeta);
+  box-shadow: 0 40px 80px -24px rgb(0 0 0 / .8);
+  overflow: hidden;
 }
 
-.pantalla-estado__etiqueta {
-  margin: 0;
-  font-size: .8rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--ch-dorado);
+/* Barra superior: se llena de izquierda a derecha al abrir */
+.pantalla-estado__caja::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--ch-dorado);
+  transform-origin: 0 50%;
+}
+
+.pantalla-estado__icono {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgb(197 162 100 / .14);
+  color: var(--ch-dorado-brillo);
+}
+
+.pantalla-estado__icono svg {
+  width: 26px;
+  height: 26px;
 }
 
 .pantalla-estado h2 {
   margin: 0;
   font-family: var(--ch-font-titular);
-  font-size: 1.5rem;
-  line-height: 1.2;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 1.2vw + 1.1rem, 1.875rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 .pantalla-estado p {
   margin: 0;
+  font-size: 1.0625rem;
+  color: var(--ch-blanco);
+}
+
+.pantalla-estado p + p {
+  margin-top: calc(-1 * var(--ch-esp-2));
   color: var(--ch-texto-noche-suave);
 }
 
-.pantalla-estado .boton {
-  justify-self: center;
+.pantalla-estado__acciones {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ch-esp-3);
+  margin-top: var(--ch-esp-3);
+}
+
+@media (min-width: 480px) {
+  .pantalla-estado__acciones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.pantalla-estado__acciones .boton { width: 100%; }
+
+/* En el teléfono la acción principal va arriba, al alcance del pulgar */
+@media (max-width: 479px) {
+  .pantalla-estado__acciones .boton--dorado { order: -1; }
+}
+
+.pantalla-estado__cerrar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ch-texto-noche-suave);
+  cursor: pointer;
+  transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo);
+}
+
+.pantalla-estado__cerrar:hover { background: rgb(255 255 255 / .08); color: var(--ch-blanco); }
+.pantalla-estado__cerrar svg { width: 18px; height: 18px; }
+
+/* Entrada: la placa sube y se enfoca, la barra se carga y el icono gira una vez */
+@keyframes ch-estado-entra { from { opacity: 0; transform: translateY(16px) scale(.97); } }
+@keyframes ch-estado-velo { from { opacity: 0; } }
+@keyframes ch-estado-barra { from { transform: scaleX(0); } }
+@keyframes ch-estado-giro { from { transform: rotate(-180deg); opacity: 0; } }
+
+.pantalla-estado[open] .pantalla-estado__caja { animation: ch-estado-entra 520ms var(--ch-expo) both; }
+.pantalla-estado[open]::backdrop { animation: ch-estado-velo 320ms ease-out both; }
+.pantalla-estado[open] .pantalla-estado__caja::before { animation: ch-estado-barra 1100ms var(--ch-expo) 120ms both; }
+.pantalla-estado[open] .pantalla-estado__icono svg { animation: ch-estado-giro 800ms var(--ch-expo) 80ms both; }
+
+@media (max-width: 479px) {
+  .pantalla-estado__caja { padding: var(--ch-esp-6) var(--ch-esp-5) var(--ch-esp-5); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .volver-arriba,
   .iman {
     transition: none;
+  }
+  .pantalla-estado[open] .pantalla-estado__caja,
+  .pantalla-estado[open]::backdrop,
+  .pantalla-estado[open] .pantalla-estado__caja::before,
+  .pantalla-estado[open] .pantalla-estado__icono svg {
+    animation: none;
   }
 }

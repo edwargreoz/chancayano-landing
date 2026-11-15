@@ -67,6 +67,7 @@
       estado.querySelector('.estado-cerrar').focus();
     });
     estado.querySelector('.estado-cerrar').addEventListener('click', () => estado.close());
+    estado.querySelector('.estado-x').addEventListener('click', () => estado.close());
     // Clic fuera de la caja cierra la pantalla
     estado.addEventListener('click', (e) => { if (e.target === estado) estado.close(); });
   }

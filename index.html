@@ -33,7 +33,7 @@
 </script>
 <link rel="preload" as="image" href="assets/img/cogollo-banner.webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/tokens.css?v=3">
-<link rel="stylesheet" href="assets/animaciones.css">
+<link rel="stylesheet" href="assets/animaciones.css?v=2">
 <script>
   document.documentElement.classList.add('js');
   if (!(window.CSS && CSS.supports('animation-timeline: view()'))) document.documentElement.classList.add('sin-timeline');
@@ -304,16 +304,31 @@
   .cierre h2 { max-width: 18ch; }
   .cierre p { color: var(--ch-blanco); font-size: 1.125rem; }
   .cierre .acciones { margin-inline: auto; margin-top: var(--ch-esp-3); }
-  .pie { background: var(--ch-noche-profunda); color: var(--ch-texto-noche-suave); padding-block: var(--ch-esp-8) var(--ch-esp-6); font-size: .9375rem; }
-  .pie-grid { display: grid; gap: var(--ch-esp-7); }
-  .pie h2 { font: 600 .9375rem/1.4 var(--ch-font-texto); color: var(--ch-dorado); margin-bottom: var(--ch-esp-3); }
-  .pie ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ch-esp-1); }
-  .pie a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  /* Pie: marca con su descripción, tres columnas (Líneas, Ayuda, Contacto), advertencia legal y franja de derechos */
+  .pie { background: var(--ch-noche-profunda); color: var(--ch-texto-noche-suave); padding-block: clamp(64px, 7vw, 112px) var(--ch-esp-5); font-size: 1rem; }
+  .pie-grid { display: grid; gap: var(--ch-esp-7) var(--ch-esp-6); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pie-marca { grid-column: 1 / -1; display: grid; gap: var(--ch-esp-4); align-content: start; }
+  .pie-marca p { color: var(--ch-blanco); max-width: 34ch; }
+  .pie h2 { font: 600 1rem/1.4 var(--ch-font-texto); color: var(--ch-dorado); margin-bottom: var(--ch-esp-2); }
+  .pie ul { list-style: none; margin: 0; padding: 0; display: grid; }
+  .pie a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; transition: color var(--ch-dur-hover) var(--ch-expo); }
   .pie a:hover { color: var(--ch-blanco); text-decoration: underline; text-underline-offset: 4px; }
-  .pie .logo img { height: 28px; }
-  .pie p + p { margin-top: var(--ch-esp-2); }
-  .advertencia { margin-top: var(--ch-esp-8); padding: var(--ch-esp-5) var(--ch-esp-4); background: rgb(255 255 255 / .05); border-radius: var(--ch-radio-tarjeta); text-align: center; font-weight: 600; letter-spacing: .16em; font-size: .8125rem; color: var(--ch-blanco); max-width: none; }
-  @media (min-width: 760px) { .pie-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+  .pie .logo img { height: 30px; }
+  .pie-contacto { grid-column: 1 / -1; }
+  .pie-contacto li { display: grid; }
+  .pie-contacto .dato { padding-block: 10px; line-height: 1.5; }
+  .pie-contacto small { display: block; font-size: .875rem; color: var(--ch-texto-noche-suave); }
+  .pie-contacto a, .pie-contacto .dato span { color: var(--ch-blanco); }
+  .advertencia { margin-top: clamp(48px, 5vw, 72px); padding: var(--ch-esp-5) var(--ch-esp-4); background: rgb(255 255 255 / .05); border-radius: var(--ch-radio-tarjeta); text-align: center; font-weight: 600; letter-spacing: .16em; font-size: .875rem; color: var(--ch-blanco); max-width: none; }
+  .pie-legal { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ch-esp-2) var(--ch-esp-6); margin-top: var(--ch-esp-5); font-size: .9375rem; }
+  .pie-legal p { max-width: none; }
+  .pie-legal ul { display: flex; flex-wrap: wrap; gap: 0 var(--ch-esp-5); }
+  @media (max-width: 759px) { .pie { padding-bottom: 80px; } }
+  @media (min-width: 960px) {
+    .pie-grid { grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); }
+    .pie-marca, .pie-contacto { grid-column: auto; }
+    .pie a { min-height: 40px; }
+  }
 
   /* Movimiento ligado al scroll: avanza y retrocede con el visitante */
   @keyframes ch-subir { from { opacity: 0; transform: translateY(28px); } }
@@ -657,11 +672,9 @@
 <footer class="pie" id="contacto">
   <div class="wrap">
     <div class="pie-grid">
-      <div>
-        <a class="logo" href="#inicio"><img src="assets/img/logo-dorado.webp" alt="Chancayano" width="2560" height="460" loading="lazy"></a>
-        <p style="margin-top: var(--ch-esp-4)">Distrito Chancay Baños, provincia de Santa Cruz, Cajamarca, Perú.</p>
-        <p><a href="https://wa.me/51901681957">WhatsApp 901 681 957</a></p>
-        <p><a href="mailto:medioschancayano@gmail.com">medioschancayano@gmail.com</a></p>
+      <div class="pie-marca">
+        <a class="logo" href="#inicio"><img src="assets/img/logo-dorado.webp" alt="Chancayano, volver al inicio" width="2560" height="460" loading="lazy"></a>
+        <p>Aguardiente artesanal de caña de azúcar, elaborado en Chancay Baños desde 2002.</p>
       </div>
       <nav aria-labelledby="pie-lineas">
         <h2 id="pie-lineas">Líneas</h2>
@@ -679,14 +692,28 @@
           <li><a href="#" data-pronto aria-haspopup="dialog">Envíos y cobertura</a></li>
           <li><a href="#" data-pronto aria-haspopup="dialog">Devoluciones</a></li>
           <li><a href="#" data-pronto aria-haspopup="dialog">Libro de Reclamaciones</a></li>
-          <li><a href="privacidad.html">Política de privacidad</a></li>
-          <li><a href="terminos.html">Términos y condiciones</a></li>
         </ul>
       </nav>
+      <div class="pie-contacto">
+        <h2 id="pie-contacto">Contacto</h2>
+        <ul aria-labelledby="pie-contacto">
+          <li><small>WhatsApp</small><a href="https://wa.me/51901681957">901 681 957</a></li>
+          <li><small>Correo</small><a href="mailto:medioschancayano@gmail.com">medioschancayano@gmail.com</a></li>
+          <li class="dato"><small>Dirección</small><span>Chancay Baños, Santa Cruz, Cajamarca, Perú</span></li>
+        </ul>
+      </div>
     </div>
     <p class="advertencia">TOMAR BEBIDAS ALCOHÓLICAS EN EXCESO ES DAÑINO</p>
+    <div class="pie-legal">
+      <p>© <span data-anio>2026</span> Agroindustrias Chancayano S.A.C. Todos los derechos reservados.</p>
+      <ul aria-label="Legal">
+        <li><a href="privacidad.html">Política de privacidad</a></li>
+        <li><a href="terminos.html">Términos y condiciones</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
+<script>document.querySelectorAll('[data-anio]').forEach((e) => { e.textContent = new Date().getFullYear(); });</script>
 
 <script>
 (() => {
@@ -989,12 +1016,19 @@
 </script>
 <dialog id="pantalla-estado" class="pantalla-estado" aria-labelledby="estado-titulo" aria-describedby="estado-texto">
   <div class="pantalla-estado__caja">
-    <p class="pantalla-estado__etiqueta">En preparación</p>
+    <button type="button" class="pantalla-estado__cerrar estado-x" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <span class="pantalla-estado__icono" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9"/></svg></span>
     <h2 id="estado-titulo">Esta función aún no está en desarrollo</h2>
-    <p id="estado-texto">Gracias por tu interés.</p>
-    <button type="button" class="boton boton--dorado estado-cerrar">Entendido</button>
+    <div id="estado-texto">
+      <p>Gracias por tu interés.</p>
+      <p>Mientras tanto, puedes hacer tu pedido por WhatsApp.</p>
+    </div>
+    <div class="pantalla-estado__acciones">
+      <button type="button" class="boton boton--fantasma estado-cerrar">Entendido</button>
+      <a class="boton boton--dorado" href="https://wa.me/51901681957">Pedir por WhatsApp</a>
+    </div>
   </div>
 </dialog>
-<script src="assets/animaciones.js" defer></script>
+<script src="assets/animaciones.js?v=2" defer></script>
 </body>
 </html>
