@@ -128,10 +128,10 @@
   .hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 24%; z-index: -1; background: linear-gradient(180deg, rgb(10 17 34 / 0) 0%, var(--ch-noche-profunda) 100%); pointer-events: none; }
   /* Fondo: el cielo queda casi limpio para la palabra; el campo se oscurece donde va el texto */
   .hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, rgb(16 26 49 / .45) 0%, rgb(16 26 49 / .3) 30%, rgb(16 26 49 / .78) 56%, rgb(10 17 34 / .94) 74%, var(--ch-noche-profunda) 100%), url("assets/img/fondo-cana.webp") center 30% / cover no-repeat var(--ch-noche); }
-  .hero-palabra { position: relative; z-index: -1; justify-self: center; margin: 0; max-width: none; font: 700 clamp(4rem, 19vw, 19rem)/.8 var(--ch-font-titular); letter-spacing: .01em; text-transform: uppercase; color: rgb(226 200 143 / .62); white-space: nowrap; user-select: none; pointer-events: none; }
+  .hero-palabra { position: relative; z-index: -1; justify-self: center; margin: 0; max-width: none; font: 700 clamp(2.75rem, 12.5vw, 12rem)/.8 var(--ch-font-titular); letter-spacing: .01em; text-transform: uppercase; color: rgb(226 200 143 / .62); white-space: nowrap; user-select: none; pointer-events: none; }
   .hero .wrap { display: grid; justify-items: center; grid-template-columns: minmax(0, 1fr); grid-template-areas: "media" "titulo" "lead" "compra" "nota"; }
   .hero { --foto: min(100%, 36svh, 380px); }
-  .escena-parallax { grid-area: media; width: var(--foto); margin-top: calc(clamp(4rem, 19vw, 19rem) * -.24); }
+  .escena-parallax { grid-area: media; width: var(--foto); margin-top: calc(clamp(2.75rem, 12.5vw, 12rem) * -.24); }
   .hero-cifra { display: none; }
   .hero h1 { grid-area: titulo; margin-top: var(--ch-esp-5); font-size: clamp(2.25rem, 2vw + 1.25rem, 3.5rem); line-height: 1; letter-spacing: -0.02em; }
   .hero h1 .l { display: block; white-space: nowrap; }
@@ -487,7 +487,7 @@
 <main id="contenido">
 
   <section class="hero oscuro" id="inicio" aria-labelledby="t-hero">
-    <p class="hero-palabra" aria-hidden="true">Chancay</p>
+    <p class="hero-palabra" aria-hidden="true">Chancayano</p>
     <div class="wrap">
       <p class="hero-cifra hero-cifra--a"><strong>2002</strong><span>Elaborado desde</span></p>
       <div class="escena-parallax">
