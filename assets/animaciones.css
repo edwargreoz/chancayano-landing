@@ -164,8 +164,8 @@
 @keyframes ch-estado-velo { from { opacity: 0; } }
 @keyframes ch-estado-giro { from { transform: rotate(-180deg); opacity: 0; } }
 
-.pantalla-estado[open] .pantalla-estado__caja { animation: ch-estado-entra 520ms var(--ch-expo) both; }
-.pantalla-estado[open]::backdrop { animation: ch-estado-velo 320ms ease-out both; }
+.pantalla-estado[open] .pantalla-estado__caja { animation: ch-estado-entra 320ms var(--ch-expo) both; }
+.pantalla-estado[open]::backdrop { animation: ch-estado-velo 240ms ease-out both; }
 .pantalla-estado[open] .pantalla-estado__icono svg { animation: ch-estado-giro 800ms var(--ch-expo) 80ms both; }
 
 @media (max-width: 479px) {
@@ -177,9 +177,7 @@
   .iman {
     transition: none;
   }
-  .pantalla-estado[open] .pantalla-estado__caja,
-  .pantalla-estado[open]::backdrop,
-  .pantalla-estado[open] .pantalla-estado__icono svg {
-    animation: none;
-  }
+  /* Movimiento reducido: la placa aparece con un fundido, sin desplazamiento ni giro */
+  .pantalla-estado[open] .pantalla-estado__caja { animation: ch-estado-velo 200ms ease-out both; }
+  .pantalla-estado[open] .pantalla-estado__icono svg { animation: none; }
 }
