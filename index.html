@@ -119,80 +119,64 @@
     .cabecera .solo-ancho { display: none; }
   }
 
-  /* Hero · patrón «producto a escala con ficha de compra».
-     La botella Cogollo es la protagonista; a su lado, la ficha reúne tamaño, precio y pedido.
-     Escritorio: texto y ficha a la izquierda, centrados a la altura de la botella; la foto a la derecha.
-     Móvil: título, foto, ficha (precio y botón juntos) y la frase de apoyo al final. */
+  /* Hero · patrón «tipografía monumental integrada en la escena», centrado.
+     Capas: campo de caña a sangre (cielo arriba) · palabra CHANCAY gigante en el cielo (decorativa) ·
+     la botella enmarcada sube desde el campo y tapa la base de la palabra (menos del 35 % de su alto) ·
+     título real, frase de apoyo y pedido en el eje, sobre el velo oscuro del campo. */
   .sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-  .hero { position: relative; isolation: isolate; min-height: 100svh; display: grid; align-items: center; padding-block: 104px 64px; overflow: hidden; }
-  /* Fusión con la sección siguiente: el hero termina en el mismo azul profundo con el que empieza Líneas */
-  .hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 32%; z-index: -1; background: linear-gradient(180deg, rgb(10 17 34 / 0) 0%, var(--ch-noche-profunda) 100%); pointer-events: none; }
-  /* Fondo: campo de caña con velo azul noche, más denso donde va el texto */
-  .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(16 26 49 / .95) 0%, rgb(16 26 49 / .82) 45%, rgb(16 26 49 / .5) 100%), url("assets/img/fondo-cana.webp") center / cover no-repeat; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 100%); }
-  .hero .wrap { display: grid; gap: var(--ch-esp-5); grid-template-columns: minmax(0, 1fr); grid-template-areas: "titulo" "media" "compra" "lead"; }
-  .hero-titulo { grid-area: titulo; }
-  .escena-parallax { grid-area: media; }
-  .ficha-compra { grid-area: compra; }
-  .hero-apoyo { grid-area: lead; }
-  .hero h1 { font-size: clamp(2.5rem, 3vw + 1rem, 4.5rem); line-height: .98; letter-spacing: -0.03em; }
-  .hero h1 .l { white-space: nowrap; }
+  .hero { position: relative; isolation: isolate; min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; padding-block: clamp(84px, 11svh, 104px) 56px; overflow: hidden; text-align: center; }
+  .hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 24%; z-index: -1; background: linear-gradient(180deg, rgb(10 17 34 / 0) 0%, var(--ch-noche-profunda) 100%); pointer-events: none; }
+  /* Fondo: el cielo queda casi limpio para la palabra; el campo se oscurece donde va el texto */
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, rgb(16 26 49 / .45) 0%, rgb(16 26 49 / .3) 30%, rgb(16 26 49 / .78) 56%, rgb(10 17 34 / .94) 74%, var(--ch-noche-profunda) 100%), url("assets/img/fondo-cana.webp") center 30% / cover no-repeat var(--ch-noche); }
+  .hero-palabra { position: relative; z-index: -1; justify-self: center; margin: 0; max-width: none; font: 700 clamp(4rem, 19vw, 19rem)/.8 var(--ch-font-titular); letter-spacing: .01em; text-transform: uppercase; color: rgb(226 200 143 / .62); white-space: nowrap; user-select: none; pointer-events: none; }
+  .hero .wrap { display: grid; justify-items: center; grid-template-columns: minmax(0, 1fr); grid-template-areas: "media" "titulo" "lead" "compra" "nota"; }
+  .hero { --foto: min(100%, 36svh, 380px); }
+  .escena-parallax { grid-area: media; width: var(--foto); margin-top: calc(clamp(4rem, 19vw, 19rem) * -.24); }
+  .hero-cifra { display: none; }
+  .hero h1 { grid-area: titulo; margin-top: var(--ch-esp-5); font-size: clamp(2.25rem, 2vw + 1.25rem, 3.5rem); line-height: 1; letter-spacing: -0.02em; }
+  .hero h1 .l { display: block; white-space: nowrap; }
   .hero h1 .l--dorado { color: var(--ch-dorado-brillo); }
-  .hero .lead { color: var(--ch-blanco); font-size: 1.125rem; max-width: 40ch; }
-  .hero-mas { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: var(--ch-esp-2); font-weight: 600; color: var(--ch-dorado-brillo); text-decoration: none; }
-  .hero-mas::after { content: "↓"; transition: transform 240ms var(--ch-expo); }
-  @media (hover: hover) and (pointer: fine) { .hero-mas:hover::after { transform: translateY(3px); } }
+  .hero .lead { grid-area: lead; margin: var(--ch-esp-4) auto 0; color: var(--ch-blanco); font-size: 1.125rem; max-width: 62ch; }
 
-  /* La foto: pieza oficial completa, cuadrada, dentro de un marco que flota sobre el campo.
-     Es el único objeto con sombra del hero e inclina con el puntero. */
+  /* La foto: pieza oficial completa, cuadrada, en un marco que flota; es el único objeto con sombra e inclina con el puntero */
   .escena { position: relative; perspective: 1100px; isolation: isolate; }
-  .marco-hero { position: relative; margin: 0; aspect-ratio: 1; border-radius: var(--ch-radio-tarjeta); overflow: hidden; background: var(--ch-noche-profunda); box-shadow: 0 50px 80px -30px rgb(0 0 0 / .7); transform: rotateY(calc(var(--ry, 0) * 1deg)) rotateX(calc(var(--rx, 0) * 1deg)); transform-style: preserve-3d; }
+  .marco-hero { position: relative; margin: 0; aspect-ratio: 1; border-radius: var(--ch-radio-tarjeta); overflow: hidden; background: var(--ch-noche-profunda); box-shadow: 0 40px 70px -28px rgb(0 0 0 / .75); transform: rotateY(calc(var(--ry, 0) * 1deg)) rotateX(calc(var(--rx, 0) * 1deg)); transform-style: preserve-3d; }
   .marco-hero img { width: 100%; height: 100%; object-fit: cover; }
 
-  /* Ficha de compra: nombre y grado; tamaño y precio en la misma fila; el botón a todo el ancho debajo.
-     Superficies rellenas, sin contorno. */
-  .ficha-compra { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "nombre nombre" "tamanos precio" "boton boton" "nota nota"; align-items: center; gap: var(--ch-esp-4) var(--ch-esp-5); padding: var(--ch-esp-5); background: var(--ch-noche-profunda); border-radius: var(--ch-radio-tarjeta); max-width: 30rem; }
-  .fc-nombre { grid-area: nombre; font: 500 1.375rem/1.2 var(--ch-font-titular); }
-  .fc-grado { color: var(--ch-dorado-brillo); white-space: nowrap; }
+  /* Pedido en el eje: tamaño, precio y botón juntos, en una fila desde 700 px */
+  .ficha-compra { grid-area: compra; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "tamanos precio" "boton boton"; align-items: center; gap: var(--ch-esp-3) var(--ch-esp-4); width: min(100%, 22rem); margin-top: var(--ch-esp-5); }
   .fc-tamanos { grid-area: tamanos; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ch-esp-2); margin: 0; padding: 0; border: 0; min-width: 0; }
   .fc-tamanos label { position: relative; display: block; cursor: pointer; }
   .fc-tamanos input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
-  .fc-tamanos span { display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: var(--ch-radio-boton); background: rgb(255 255 255 / .07); color: var(--ch-texto-noche-suave); font-weight: 600; white-space: nowrap; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo), scale 160ms var(--ch-expo); }
-  .fc-tamanos input:checked + span { background: rgb(197 162 100 / .24); color: var(--ch-dorado-brillo); }
+  .fc-tamanos span { display: flex; align-items: center; justify-content: center; min-height: 48px; padding-inline: 14px; border-radius: var(--ch-radio-boton); background: rgb(255 255 255 / .09); color: var(--ch-texto-noche-suave); font-weight: 600; white-space: nowrap; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo), scale 160ms var(--ch-expo); }
+  .fc-tamanos input:checked + span { background: rgb(197 162 100 / .26); color: var(--ch-dorado-brillo); }
   .fc-tamanos input:focus-visible + span { outline: 2px solid var(--ch-dorado); outline-offset: 3px; }
   .fc-tamanos label:active span { scale: .97; }
-  @media (hover: hover) and (pointer: fine) { .fc-tamanos input:not(:checked):hover + span { background: rgb(255 255 255 / .12); color: var(--ch-blanco); } }
+  @media (hover: hover) and (pointer: fine) { .fc-tamanos input:not(:checked):hover + span { background: rgb(255 255 255 / .14); color: var(--ch-blanco); } }
   .fc-compra { display: contents; }
-  .fc-precio { grid-area: precio; font: 500 2rem/1 var(--ch-font-titular); color: var(--ch-blanco); font-variant-numeric: tabular-nums; text-align: right; }
+  .fc-precio { grid-area: precio; font: 500 1.875rem/1 var(--ch-font-titular); color: var(--ch-blanco); font-variant-numeric: tabular-nums; }
   .fc-precio output { display: inline-block; }
   .fc-precio output.cambio { animation: ch-precio 180ms var(--ch-expo); }
   @keyframes ch-precio { from { opacity: .2; transform: translateY(4px); } }
   .fc-compra .boton { grid-area: boton; width: 100%; }
-  .fc-nota { grid-area: nota; font-size: .875rem; line-height: 1.45; color: var(--ch-texto-noche-suave); }
-
-  /* Teléfono: todo en una columna; título, foto y ficha caben en la primera pantalla */
-  @media (max-width: 1079px) {
-    .hero { padding-block: 88px 48px; min-height: auto; }
-    .hero::before { background: linear-gradient(180deg, rgb(16 26 49 / .9) 0%, rgb(16 26 49 / .74) 60%, rgb(16 26 49 / .92) 100%), url("assets/img/fondo-cana.webp") center / cover no-repeat; }
+  .fc-nota { grid-area: nota; max-width: 72ch; margin: var(--ch-esp-4) auto 0; font-size: .875rem; line-height: 1.45; color: var(--ch-texto-noche-suave); }
+  @media (min-width: 700px) {
+    .ficha-compra { width: auto; grid-template-columns: 12rem auto 15rem; grid-template-areas: "tamanos precio boton"; column-gap: var(--ch-esp-5); }
+  }
+  /* Escritorio: dos cifras verificadas flanquean la botella, como en la referencia */
+  @media (min-width: 1080px) {
+    .hero { --foto: min(36svh, 380px); }
+    .hero .wrap { grid-template-columns: minmax(0, 1fr) var(--foto) minmax(0, 1fr); grid-template-areas: "cifra-a media cifra-b" "titulo titulo titulo" "lead lead lead" "compra compra compra" "nota nota nota"; column-gap: var(--ch-esp-8); }
+    .hero-cifra { display: grid; gap: 4px; align-self: end; margin: 0 0 var(--ch-esp-6); }
+    .hero-cifra--a { grid-area: cifra-a; justify-self: end; text-align: right; }
+    .hero-cifra--b { grid-area: cifra-b; justify-self: start; text-align: left; }
+    .hero-cifra strong { font: 500 clamp(2rem, 1.4vw + 1rem, 2.75rem)/1 var(--ch-font-titular); color: var(--ch-blanco); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .hero-cifra span { font-size: .9375rem; color: var(--ch-blanco); }
   }
   @media (max-width: 559px) {
-    .hero .wrap { gap: var(--ch-esp-4); }
     .hero .lead { font-size: 1.0625rem; }
-    .ficha-compra { padding: var(--ch-esp-4); gap: var(--ch-esp-3) var(--ch-esp-4); }
-    .fc-nombre { font-size: 1.25rem; }
-    .fc-precio { font-size: 1.75rem; }
-  }
-  /* Tableta: título arriba; foto a la izquierda y ficha con la frase de apoyo a la derecha */
-  @media (min-width: 700px) and (max-width: 1079px) {
-    .hero .wrap { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-rows: auto auto 1fr; grid-template-areas: "titulo titulo" "media compra" "media lead"; column-gap: var(--ch-esp-5); }
-    .ficha-compra { align-self: start; }
-    .hero-apoyo { align-self: start; }
-  }
-  /* Escritorio: texto y ficha a la izquierda, centrados a la altura de la botella */
-  @media (min-width: 1080px) {
-    .hero .wrap { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 1fr auto auto auto 1fr; grid-template-areas: ". media" "titulo media" "lead media" "compra media" ". media"; column-gap: var(--ch-esp-8); row-gap: 0; }
-    .hero .lead { margin-top: var(--ch-esp-5); }
-    .hero-apoyo { margin-bottom: var(--ch-esp-6); }
-    .escena-parallax { width: min(80svh, 720px, 52vw); align-self: center; }
+    .hero h1 { margin-top: var(--ch-esp-5); }
+    .hero { --foto: min(100%, 34svh, 300px); }
   }
 
   /* Carga del hero: el título sube por líneas, la botella se abre como un obturador */
@@ -202,8 +186,11 @@
   @keyframes ch-enfoque { from { transform: scale(1.18); } }
   .hero h1 .l { display: block; animation: ch-linea var(--ch-dur-hero) var(--ch-expo) both; }
   .hero h1 .l:nth-child(2) { animation-delay: 90ms; }
-  .hero-apoyo, .ficha-compra { animation: ch-aparecer var(--ch-dur-hero) var(--ch-expo) both; animation-delay: 300ms; }
-  .ficha-compra { animation-delay: 400ms; }
+  .hero-palabra { animation: ch-palabra 1400ms var(--ch-expo) both; }
+  @keyframes ch-palabra { from { opacity: 0; letter-spacing: .12em; } }
+  .hero .lead, .hero-cifra, .ficha-compra, .fc-nota { animation: ch-aparecer var(--ch-dur-hero) var(--ch-expo) both; animation-delay: 320ms; }
+  .hero-cifra { animation-delay: 450ms; }
+  .ficha-compra, .fc-nota { animation-delay: 400ms; }
   .marco-hero { animation: ch-obturador 1300ms var(--ch-expo) backwards; animation-delay: 150ms; }
   .marco-hero img { animation: ch-enfoque 1800ms var(--ch-expo) backwards; animation-delay: 150ms; }
 
@@ -374,6 +361,7 @@
   @keyframes ch-zoom { from { transform: scale(1.14); } }
   @keyframes ch-ventana { from { clip-path: inset(14% 8% round 4px); } to { clip-path: inset(0 round 4px); } }
   @keyframes ch-parallax { to { transform: translateY(-70px); } }
+  @keyframes ch-palabra-scroll { to { transform: translateY(90px); } }
   @keyframes ch-trazo { from { transform: scaleX(0); } }
   @keyframes ch-acercar { to { transform: scale(1.1); } }
   @supports (animation-timeline: view()) {
@@ -384,6 +372,7 @@
       .origen-foto img { animation: ch-zoom linear both; animation-timeline: view(); animation-range: entry 0% exit 0%; }
       .filete { animation: ch-trazo linear both; animation-timeline: view(); animation-range: entry 20% cover 30%; }
       .escena-parallax { animation: ch-parallax linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+      .hero-palabra { animation: ch-palabra 1400ms var(--ch-expo) both, ch-palabra-scroll linear both; animation-timeline: auto, scroll(root); animation-range: normal, 0 100vh; }
       /* El campo de caña del hero se acerca despacio al bajar */
       .hero::before { animation: ch-acercar linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
       /* Las piezas del mosaico entran escalonadas por columna */
@@ -397,7 +386,8 @@
   .sin-timeline .origen-foto:not(.visible) { opacity: 0; transform: translateY(28px); }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero h1 .l, .hero-apoyo, .ficha-compra, .marco-hero, .marco-hero img, .fc-precio output.cambio { animation: none; }
+    .hero h1 .l, .hero .lead, .hero-cifra, .ficha-compra, .fc-nota, .marco-hero, .marco-hero img, .fc-precio output.cambio { animation: none; }
+    .hero-palabra { animation: ch-desvanecer 300ms ease both; }
     .marco-hero { transform: none; }
     .linea:hover .marco img { transform: none; }
     .linea:hover { translate: none; }
@@ -496,11 +486,10 @@
 
 <main id="contenido">
 
-  <section class="hero oscuro" id="inicio">
+  <section class="hero oscuro" id="inicio" aria-labelledby="t-hero">
+    <p class="hero-palabra" aria-hidden="true">Chancay</p>
     <div class="wrap">
-      <div class="hero-titulo">
-        <h1><span class="l">Cogollo Premium</span><span class="l l--dorado">de Chancay Baños</span></h1>
-      </div>
+      <p class="hero-cifra hero-cifra--a"><strong>2002</strong><span>Elaborado desde</span></p>
       <div class="escena-parallax">
         <div class="escena" id="escena">
           <figure class="marco-hero">
@@ -508,12 +497,10 @@
           </figure>
         </div>
       </div>
-      <div class="hero-apoyo">
-        <p class="lead">Aguardiente artesanal de caña de azúcar, destilado en Santa Cruz, Cajamarca, desde 2002. También hay destilados, macerados y cocktails.</p>
-        <a class="hero-mas" href="#lineas">Ver las líneas</a>
-      </div>
-      <form class="ficha-compra" id="ficha-hero" aria-labelledby="fc-nombre" onsubmit="return false">
-        <p class="fc-nombre" id="fc-nombre">Aguardiente Cogollo Premium,<span class="fc-grado"> 56 % vol.</span></p>
+      <p class="hero-cifra hero-cifra--b"><strong>56 % vol.</strong><span>Cogollo Premium</span></p>
+      <h1 id="t-hero"><span class="l">Cogollo Premium</span><span class="l l--dorado">de Chancay Baños</span></h1>
+      <p class="lead">Aguardiente artesanal de caña de azúcar, destilado en Santa Cruz, Cajamarca. También hay destilados, macerados y cocktails.</p>
+      <form class="ficha-compra" id="ficha-hero" aria-label="Pedir Aguardiente Cogollo Premium" onsubmit="return false">
         <fieldset class="fc-tamanos">
           <legend class="sr">Tamaño de la botella</legend>
           <label><input type="radio" name="tamano-hero" value="500" checked><span>500 ml</span></label>
@@ -523,8 +510,8 @@
           <p class="fc-precio"><span class="sr">Precio: </span><output id="fc-precio" for="ficha-hero" aria-live="polite">S/ 70.00</output></p>
           <a class="boton boton--dorado" id="fc-pedir" href="https://wa.me/51901681957?text=Hola%2C%20quiero%20pedir%20Aguardiente%20Cogollo%20Premium%20500%20ml%20(S%2F%2070.00).">Pedir por WhatsApp</a>
         </div>
-        <p class="fc-nota">Venta solo a mayores de 18 años. Tomar bebidas alcohólicas en exceso es dañino.</p>
       </form>
+      <p class="fc-nota">Venta solo a mayores de 18 años. Tomar bebidas alcohólicas en exceso es dañino.</p>
     </div>
   </section>
 
