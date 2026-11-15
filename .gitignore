@@ -11,3 +11,4 @@ desktop.ini
 # Capturas y pruebas locales
 *.log
 capturas/
+.taste-skill/

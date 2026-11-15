@@ -71,3 +71,53 @@
     estado.addEventListener('click', (e) => { if (e.target === estado) estado.close(); });
   }
 })();
+
+/* Navegación: una barra dorada se desliza bajo el enlace de la sección visible.
+   Cifras de Origen: cuentan desde cero hasta su valor la primera vez que entran en pantalla. */
+(() => {
+  const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 5. Sección activa en la navegación
+  const nav = document.querySelector('.nav');
+  const marca = nav && nav.querySelector('.nav-marca');
+  if (nav && marca && 'IntersectionObserver' in window) {
+    const enlaces = [...nav.querySelectorAll('a[href^="#"]')];
+    const secciones = enlaces.map((a) => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+    let activo = null;
+    const pintar = () => {
+      const a = activo && enlaces.find((e) => e.getAttribute('href') === '#' + activo);
+      enlaces.forEach((e) => e.removeAttribute('aria-current'));
+      if (!a) { marca.style.setProperty('--nw', 0); return; }
+      a.setAttribute('aria-current', 'true');
+      marca.style.setProperty('--nx', `${a.offsetLeft}px`);
+      marca.style.setProperty('--nw', a.offsetWidth);
+    };
+    const io = new IntersectionObserver((entradas) => {
+      entradas.forEach((e) => { if (e.isIntersecting) activo = e.target.id; else if (activo === e.target.id) activo = null; });
+      pintar();
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    secciones.forEach((sec) => io.observe(sec));
+    window.addEventListener('resize', pintar);
+  }
+
+  // 6. Cifras que cuentan
+  const cifras = document.querySelectorAll('[data-cuenta]');
+  if (!cifras.length || reducido || !('IntersectionObserver' in window)) return;
+  const contar = (el) => {
+    const fin = Number(el.dataset.cuenta);
+    const sufijo = el.textContent.replace(/^[\d\s]+/, ' ').trimEnd();
+    const t0 = performance.now();
+    const dur = 1400;
+    const paso = (ahora) => {
+      const p = Math.min(1, (ahora - t0) / dur);
+      const v = Math.round(fin * (1 - Math.pow(1 - p, 4)));
+      el.textContent = `${v}${sufijo}`;
+      if (p < 1) requestAnimationFrame(paso);
+    };
+    requestAnimationFrame(paso);
+  };
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { contar(e.target); io.unobserve(e.target); }
+  }), { threshold: 0.6 });
+  cifras.forEach((el) => io.observe(el));
+})();

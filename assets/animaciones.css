@@ -6,7 +6,7 @@
   inset: 0 0 auto 0;
   height: 3px;
   z-index: 60;
-  background: linear-gradient(90deg, var(--ch-dorado), var(--ch-dorado-brillo, var(--ch-dorado)));
+  background: var(--ch-dorado);
   transform-origin: 0 50%;
   transform: scaleX(0);
   pointer-events: none;
@@ -23,7 +23,7 @@
   height: 48px;
   padding: 0;
   border-radius: 50%;
-  border: 1px solid var(--ch-dorado);
+  border: 0;
   background: var(--ch-noche-profunda);
   color: var(--ch-dorado);
   cursor: pointer;
@@ -76,7 +76,6 @@
   padding: var(--ch-esp-6) var(--ch-esp-5);
   text-align: center;
   background: var(--ch-noche-profunda);
-  border: 1px solid var(--ch-dorado);
   border-radius: var(--ch-radio-tarjeta);
   box-shadow: var(--ch-sombra-tarjeta);
 }
