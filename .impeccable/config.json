@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-15T01:12:50.892Z",
+        "reason": "Falsos positivos medidos en el navegador: las secciones y el hero tienen 20 px de gutter horizontal y 64 px vertical (.wrap), por encima del umbral de 8 px del aviso. Revisar si se añade un contenedor con borde o color sin inset."
+      },
+      {
+        "rule": "buried-raster",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-15T01:12:58.268Z",
+        "reason": "Única imagen afectada: la alternativa de 50 ml del Cogollo, oculta a propósito y mostrada con fundido al elegir 50 ml (.diapo-enlace img[hidden]). Decisión de diseño de la sesión del 2026-11-14."
+      }
+    ]
+  }
+}

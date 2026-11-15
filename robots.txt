@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Pendiente: añadir la línea Sitemap con la URL absoluta del dominio final.

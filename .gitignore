@@ -1,0 +1,13 @@
+# Caché de herramientas de diseño
+.impeccable/hook.cache.json
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Capturas y pruebas locales
+*.log
+capturas/

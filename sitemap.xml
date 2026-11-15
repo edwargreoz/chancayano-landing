@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Pendiente: reemplazar BASE por la URL absoluta del dominio final antes de enviar a Google Search Console. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>BASE/</loc></url>
+  <url><loc>BASE/privacidad.html</loc></url>
+  <url><loc>BASE/terminos.html</loc></url>
+</urlset>

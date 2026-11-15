@@ -1,0 +1,81 @@
+/* Chancayano · tokens de diseño premium
+   Fuente: .claude/skills/chancayano-diseno-premium/references/tokens.md
+   Estado: propuesta vigente. Azul y tipografía pendientes de confirmación de marca. */
+
+@import url("fuentes.css");
+
+:root {
+  /* Color */
+  --ch-noche: #101a31;
+  --ch-noche-profunda: #0a1122;
+  --ch-tinta: #1c2a43;
+  --ch-azul: #243e88;
+  --ch-azul-claro: #3d5db8;
+  --ch-dorado: #c5a264;
+  --ch-dorado-brillo: #e2c88f;
+  --ch-dorado-texto: #8a6a2e;
+  --ch-blanco: #ffffff;
+  --ch-niebla: #f3f6fb;
+  --ch-texto-suave: #5b6680;
+  --ch-texto-noche-suave: #b7c0d6;
+  --ch-advertencia-fondo: #0a1122;
+
+  /* Tipografía */
+  --ch-font-titular: "Alegreya", Georgia, "Times New Roman", serif;
+  --ch-font-texto: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ch-fs-display: clamp(2.5rem, 4.2vw + 1rem, 4.5rem); /* 40–72 px: el título completo y los botones caben en la primera pantalla */
+  --ch-fs-h2: clamp(2rem, 3vw + 1rem, 3.5rem);
+  --ch-fs-h3: clamp(1.5rem, 1.5vw + 1rem, 2.25rem);
+  --ch-fs-eyebrow: 0.8125rem;
+  --ch-fs-texto: 1.0625rem;
+  --ch-fs-boton: 0.875rem;
+  --ch-fs-precio: 1.25rem;
+
+  /* Espacio */
+  --ch-esp-1: 4px;
+  --ch-esp-2: 8px;
+  --ch-esp-3: 12px;
+  --ch-esp-4: 16px;
+  --ch-esp-5: 24px;
+  --ch-esp-6: 32px;
+  --ch-esp-7: 48px;
+  --ch-esp-8: 64px;
+  --ch-esp-9: 96px;
+  --ch-esp-seccion: clamp(64px, 10vw, 160px);
+  --ch-ancho: 1240px;
+  --ch-medida: 62ch;
+  --ch-gutter: clamp(20px, 4vw, 40px);
+
+  /* Forma */
+  --ch-radio-boton: 2px;
+  --ch-radio-tarjeta: 4px;
+  --ch-borde-dorado: 1px solid rgb(197 162 100 / 0.35);
+
+  /* Profundidad */
+  --ch-sombra-tarjeta: 0 30px 60px -20px rgb(5 10 25 / 0.55);
+  --ch-sombra-claro: 0 24px 48px -24px rgb(28 42 67 / 0.25);
+  --ch-sombra-botella: radial-gradient(closest-side, rgb(0 0 0 / 0.55), transparent);
+  --ch-brillo-dorado: radial-gradient(closest-side, rgb(226 200 143 / 0.25), transparent 70%);
+  --ch-degradado-noche: radial-gradient(120% 80% at 70% 20%, #1a2a52 0%, var(--ch-noche) 45%, var(--ch-noche-profunda) 100%);
+
+  /* Movimiento */
+  --ch-dur-hover: 220ms;
+  --ch-dur-entrada: 400ms;
+  --ch-dur-hero: 900ms;
+  --ch-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ch-curva: var(--ch-expo);
+  --ch-dur-salida: 320ms;
+  --ch-dur-revelado: 700ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ch-dur-hover: 0ms;
+    --ch-dur-entrada: 150ms;
+    --ch-dur-hero: 150ms;
+  }
+}
+
+/* Foco visible según superficie */
+.ch-oscuro :focus-visible { outline: 2px solid var(--ch-dorado); outline-offset: 3px; }
+.ch-claro :focus-visible { outline: 2px solid var(--ch-azul); outline-offset: 3px; }

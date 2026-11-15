@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chancayano · Aguardiente artesanal de caña de Chancay Baños</title>
+<meta name="description" content="Aguardiente artesanal de caña de azúcar de Chancay Baños, Cajamarca: Cogollo Premium, destilados, macerados y cocktails de 50 a 500 ml.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#101a31">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_PE">
+<meta property="og:site_name" content="Chancayano">
+<meta property="og:title" content="Chancayano · Aguardiente artesanal de caña de Chancay Baños">
+<meta property="og:description" content="Aguardiente artesanal de caña de azúcar de Chancay Baños, Cajamarca. Destilados, macerados y cocktails.">
+<!-- Pendiente: añadir <link rel="canonical"> y og:image con la URL absoluta del dominio final de la landing. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Chancayano",
+    "legalName": "AGROINDUSTRIAS CHANCAYANO S.A.C.",
+    "taxID": "20611544902",
+  "description": "Aguardiente artesanal de caña de azúcar de Chancay Baños, Cajamarca.",
+  "email": "medioschancayano@gmail.com",
+  "telephone": "+51 901 681 957",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Chancay Baños",
+    "addressRegion": "Cajamarca",
+    "addressCountry": "PE"
+  },
+  "sameAs": [
+    "https://chancayano.com"
+  ]
+}
+</script>
+<link rel="preload" as="image" href="assets/img/cogollo-banner.webp" fetchpriority="high">
+<link rel="stylesheet" href="assets/tokens.css?v=3">
+<script>
+  document.documentElement.classList.add('js');
+  if (!(window.CSS && CSS.supports('animation-timeline: view()'))) document.documentElement.classList.add('sin-timeline');
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--ch-noche); color: var(--ch-tinta); font-family: var(--ch-font-texto); font-size: var(--ch-fs-texto); line-height: 1.6; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  ::selection { background: var(--ch-dorado); color: var(--ch-noche); }
+  :focus-visible { outline: 2px solid var(--ch-dorado); outline-offset: 3px; }
+  .claro :focus-visible, .niebla :focus-visible { outline-color: var(--ch-azul); }
+  .saltar { position: absolute; left: 16px; top: -60px; z-index: 20; background: var(--ch-blanco); color: var(--ch-azul); padding: 12px 16px; }
+  .saltar:focus { top: 12px; }
+
+  .wrap { width: min(100% - 2 * var(--ch-gutter), var(--ch-ancho)); margin-inline: auto; }
+  .oscuro { background: var(--ch-degradado-noche); color: var(--ch-blanco); }
+  .claro { background: var(--ch-blanco); color: var(--ch-tinta); }
+  .niebla { background: var(--ch-niebla); color: var(--ch-tinta); }
+  .seccion { padding-block: clamp(64px, 8vw, 128px); }
+
+  h1, h2, h3 { font-family: var(--ch-font-titular); font-weight: 500; line-height: 1.06; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+  h1 { font-size: var(--ch-fs-display); }
+  h2 { font-size: var(--ch-fs-h2); }
+  h3 { font-size: var(--ch-fs-h3); }
+  p { margin: 0; max-width: var(--ch-medida); }
+  .filete { width: 56px; height: 1px; background: var(--ch-dorado); margin-top: var(--ch-esp-3); }
+  .claro .filete, .niebla .filete { background: var(--ch-dorado-texto); }
+  .intro { display: grid; gap: var(--ch-esp-4); margin-bottom: var(--ch-esp-6); }
+  .intro p { color: var(--ch-texto-suave); }
+  .oscuro .intro p { color: var(--ch-texto-noche-suave); }
+
+  /* Botones */
+  .boton { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 var(--ch-esp-6); border-radius: var(--ch-radio-boton); font: 600 var(--ch-fs-boton)/1 var(--ch-font-texto); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo), border-color var(--ch-dur-hover) var(--ch-expo); }
+  .boton--primario { background: var(--ch-azul); color: var(--ch-blanco); border: 1px solid var(--ch-azul); }
+  .boton--primario:hover { background: var(--ch-azul-claro); border-color: var(--ch-azul-claro); }
+  .boton--dorado { background: var(--ch-dorado); color: var(--ch-noche); border: 1px solid var(--ch-dorado); }
+  .boton--dorado:hover { background: var(--ch-dorado-brillo); border-color: var(--ch-dorado-brillo); }
+  .boton--fantasma { background: transparent; color: var(--ch-blanco); border: var(--ch-borde-dorado); }
+  .boton--fantasma:hover { border-color: var(--ch-dorado); color: var(--ch-dorado-brillo); }
+  /* Grupo de acciones: en móvil los botones se apilan con el mismo ancho;
+     desde 560 px van en par de igual ancho. Así el grupo siempre tiene un borde limpio. */
+  .acciones { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ch-esp-3); width: min(100%, 22rem); margin-top: var(--ch-esp-7); }
+  .acciones .boton { width: 100%; }
+  @media (min-width: 560px) {
+    .acciones { width: auto; grid-template-columns: repeat(2, minmax(0, 15rem)); gap: var(--ch-esp-4); }
+  }
+
+  /* Cabecera */
+  .cabecera { position: fixed; inset: 0 0 auto; z-index: 10; color: var(--ch-blanco); transition: background var(--ch-dur-salida) var(--ch-expo), border-color var(--ch-dur-salida) var(--ch-expo); border-bottom: 1px solid transparent; }
+  .cabecera.con-fondo { background: rgb(16 26 49 / .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom-color: rgb(197 162 100 / .25); }
+  .cabecera .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 76px; gap: var(--ch-esp-5); }
+  .logo { display: inline-flex; min-height: 44px; align-items: center; }
+  .logo img { height: 30px; width: auto; }
+  /* Cabecera: el logo a la izquierda; el menú y «Ver tienda» agrupados a la derecha, con la misma separación. */
+  .nav { display: flex; gap: var(--ch-esp-6); margin-inline: auto 0; }
+  .nav a { text-decoration: none; font-size: 0.9375rem; color: var(--ch-texto-noche-suave); min-height: 44px; display: inline-flex; align-items: center; transition: color var(--ch-dur-hover) var(--ch-expo); }
+  .nav a:hover { color: var(--ch-blanco); }
+  .cabecera .boton { min-height: 44px; padding-inline: var(--ch-esp-5); }
+  .menu-movil { display: none; position: relative; }
+  .menu-movil summary { list-style: none; cursor: pointer; min-height: 44px; padding-inline: var(--ch-esp-4); }
+  .menu-movil summary::-webkit-details-marker { display: none; }
+  .menu-movil-panel { position: absolute; right: 0; top: calc(100% + 8px); display: grid; min-width: 220px; padding: var(--ch-esp-2); background: rgb(16 26 49 / .97); border: var(--ch-borde-dorado); border-radius: var(--ch-radio-tarjeta); z-index: 11; }
+  .menu-movil-panel a { display: flex; align-items: center; min-height: 44px; padding: 0 var(--ch-esp-4); color: var(--ch-blanco); text-decoration: none; border-radius: var(--ch-radio-boton); }
+  .menu-movil-panel a:hover, .menu-movil-panel a:focus-visible { background: rgb(197 162 100 / .14); color: var(--ch-dorado-brillo); }
+  @media (max-width: 820px) { .nav { display: none; } .menu-movil { display: block; } .logo img { height: 22px; } }
+
+  /* Hero */
+  .hero { position: relative; isolation: isolate; min-height: 100svh; display: grid; align-items: center; padding-block: 120px 72px; overflow: hidden; }
+  /* Fusión con la sección siguiente: el hero termina en el mismo azul profundo con el que empieza Líneas */
+  .hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 32%; z-index: -1; background: linear-gradient(180deg, rgb(10 17 34 / 0) 0%, var(--ch-noche-profunda) 100%); pointer-events: none; }
+  /* Fondo de campo de caña: la capa de noche a la izquierda asegura el contraste del texto */
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(16 26 49 / .94) 0%, rgb(16 26 49 / .78) 48%, rgb(16 26 49 / .42) 100%), url("assets/img/fondo-cana.webp") center / cover no-repeat; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 100%); }
+  .hero .wrap { display: grid; gap: var(--ch-esp-8); align-items: center; }
+  .hero h1 { max-width: 11ch; }
+  .hero .lead { margin-top: var(--ch-esp-6); color: var(--ch-texto-noche-suave); font-size: 1.1875rem; }
+  /* Texto justificado: con guiones automáticos (lang="es") para que los espacios no se estiren */
+  .hero .lead { text-align: justify; text-justify: inter-word; hyphens: auto; -webkit-hyphens: auto; }
+  .garantias { display: grid; gap: var(--ch-esp-2); justify-content: start; margin: var(--ch-esp-6) 0 0; padding: 0; list-style: none; font-size: 0.9375rem; color: var(--ch-texto-noche-suave); }
+  @media (min-width: 560px) {
+    .garantias { display: flex; flex-wrap: wrap; gap: var(--ch-esp-3) var(--ch-esp-6); margin-top: var(--ch-esp-7); }
+  }
+  .garantias li { display: flex; align-items: center; gap: var(--ch-esp-3); }
+  .garantias li::before { content: ""; width: 6px; height: 6px; transform: rotate(45deg); background: var(--ch-dorado); }
+  .escena { position: relative; perspective: 1100px; isolation: isolate; }
+  .escena::before { content: ""; position: absolute; inset: -12% -8%; background: var(--ch-brillo-dorado); z-index: -1; }
+  .marco-hero { margin: 0; border-radius: var(--ch-radio-tarjeta); border: var(--ch-borde-dorado); overflow: hidden; box-shadow: 0 50px 80px -30px rgb(0 0 0 / .7), 0 0 0 10px rgb(10 17 34 / .6); transform: rotateY(calc(var(--ry, 0) * 1deg)) rotateX(calc(var(--rx, 0) * 1deg)); }
+  .marco-hero img { width: 100%; }
+  .reflejo { height: 60px; margin-top: 10px; background: radial-gradient(closest-side, rgb(197 162 100 / .16), transparent); filter: blur(8px); }
+  @media (max-width: 959px) {
+    .hero { padding-block: 96px 56px; min-height: auto; }
+    .hero::before { background: linear-gradient(180deg, rgb(16 26 49 / .9) 0%, rgb(16 26 49 / .72) 60%, rgb(16 26 49 / .9) 100%), url("assets/img/fondo-cana.webp") center / cover no-repeat; }
+    .hero .wrap { gap: var(--ch-esp-6); }
+    .hero .lead { margin-top: var(--ch-esp-4); font-size: 1.0625rem; }
+    .hero .acciones { margin-top: var(--ch-esp-5); }
+  }
+  @media (min-width: 960px) {
+    .hero .wrap { grid-template-columns: 5fr 7fr; }
+    /* La foto cede protagonismo al título: más pequeña, alineada al borde derecho y algo atenuada */
+    .escena-parallax { justify-self: end; width: min(100%, 34rem); }
+    .marco-hero img { filter: brightness(.9) saturate(.92); }
+  }
+
+  /* Carga del hero: el único movimiento automático de la página */
+  @keyframes ch-aparecer { from { opacity: 0; transform: translateY(24px); } }
+  @keyframes ch-linea { from { clip-path: inset(0 0 100% 0); transform: translateY(30%); } to { clip-path: inset(0 0 -12% 0); transform: none; } }
+  .hero h1 .l { display: block; animation: ch-linea var(--ch-dur-hero) var(--ch-expo) both; }
+  .hero h1 .l:nth-child(2) { animation-delay: 90ms; }
+  .hero h1 .l:nth-child(3) { animation-delay: 180ms; }
+  .hero .lead, .hero .acciones, .hero .garantias { animation: ch-aparecer var(--ch-dur-hero) var(--ch-expo) both; animation-delay: 300ms; }
+  .hero .acciones { animation-delay: 380ms; }
+  .hero .garantias { animation-delay: 460ms; }
+  .escena { animation: ch-aparecer 1200ms var(--ch-expo) both; animation-delay: 120ms; }
+
+  /* Fondo de hileras de caña para la sección de líneas: velo azul noche para que las tarjetas destaquen;
+     el borde superior e inferior se desvanece para no cortar la imagen. */
+  #lineas { position: relative; isolation: isolate; overflow: hidden; }
+  #lineas::after { content: ""; position: absolute; inset: 0 0 auto 0; height: clamp(120px, 18vw, 240px); z-index: -1; background: linear-gradient(180deg, var(--ch-noche-profunda) 0%, rgb(10 17 34 / 0) 100%); pointer-events: none; }
+  #lineas::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(16 26 49 / .9) 0%, rgb(16 26 49 / .8) 50%, rgb(16 26 49 / .9) 100%), url("assets/img/fondo-hileras.webp") center / cover no-repeat; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); }
+
+  /* Líneas */
+  .lineas { display: grid; gap: var(--ch-esp-5); grid-template-columns: 1fr; }
+  .linea { display: flex; flex-direction: column; text-decoration: none; color: var(--ch-blanco); background: var(--ch-tinta); border: var(--ch-borde-dorado); border-radius: var(--ch-radio-tarjeta); overflow: hidden; box-shadow: var(--ch-sombra-tarjeta); }
+  .linea .marco { aspect-ratio: 5 / 3; overflow: hidden; background: var(--ch-noche-profunda); }
+  .linea .marco--blanco { background: var(--ch-blanco); }
+  .linea .marco img { width: 100%; height: 100%; object-fit: contain; transition: transform 700ms var(--ch-expo); }
+  .linea:hover .marco img { transform: scale(1.04); }
+  .linea .texto { padding: var(--ch-esp-5) var(--ch-esp-6) var(--ch-esp-6); display: grid; gap: var(--ch-esp-2); }
+  .linea h3 { font-size: 1.75rem; }
+  .linea p { color: var(--ch-texto-noche-suave); font-size: 0.9375rem; }
+  .linea .ir { margin-top: var(--ch-esp-3); font-weight: 600; font-size: 0.9375rem; color: var(--ch-dorado-brillo); }
+  @media (min-width: 720px) { .lineas { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .lineas { grid-template-columns: repeat(3, 1fr); } }
+
+  /* ───── Carrusel 3D (coverflow) ───── */
+  .carrusel { position: relative; outline: none; overflow-x: clip; }
+  .carrusel-pista { position: relative; height: min(56svh, 520px); margin: 0; padding: 0; list-style: none; perspective: 1400px; perspective-origin: 50% 40%; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+  .carrusel-pista:active { cursor: grabbing; }
+  .diapo { position: absolute; left: 50%; top: 50%; height: 88%; aspect-ratio: 1; margin: 0; transform-style: preserve-3d; transform: translate(-50%, -50%) translateX(var(--x, 0%)) translateZ(var(--z, 0px)) rotateY(var(--ry, 0deg)) scale(var(--s, 1)); opacity: var(--op, 1); filter: brightness(var(--br, 1)); z-index: var(--zi, 1); transition: transform 700ms var(--ch-expo), opacity 700ms var(--ch-expo), filter 700ms var(--ch-expo); pointer-events: var(--pe, auto); }
+  .diapo-enlace { position: relative; display: block; width: 100%; height: 100%; border-radius: var(--ch-radio-tarjeta); overflow: hidden; text-decoration: none; background: var(--ch-blanco); box-shadow: 0 40px 60px -28px rgb(5 10 25 / .55); }
+  .niebla .diapo-enlace { background: var(--ch-blanco); }
+  .claro .diapo-enlace, .carrusel--claro .diapo-enlace { background: var(--ch-niebla); box-shadow: var(--ch-sombra-claro); }
+  .diapo-enlace img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .diapo-enlace img + img { transition: opacity 360ms var(--ch-expo); }
+  .diapo-enlace img[hidden] { display: block; opacity: 0; }
+  .diapo--multiplica img { mix-blend-mode: multiply; padding: 6%; }
+  .diapo--multiplica .diapo-enlace { background: var(--ch-blanco); }
+  .diapo[aria-current="true"] .diapo-enlace { box-shadow: 0 60px 80px -30px rgb(5 10 25 / .7); }
+  .diapo-enlace:focus-visible { outline: 2px solid var(--ch-dorado); outline-offset: 4px; }
+  .carrusel--claro .diapo-enlace:focus-visible, .niebla .diapo-enlace:focus-visible { outline-color: var(--ch-azul); }
+  /* reflejo bajo la diapositiva central */
+  .carrusel-pista::after { content: ""; position: absolute; left: 50%; bottom: -4%; width: 46%; height: 6%; transform: translateX(-50%); background: radial-gradient(closest-side, rgb(5 10 25 / .35), transparent); filter: blur(6px); pointer-events: none; }
+
+  .carrusel-controles { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ch-esp-4); margin-top: var(--ch-esp-5); }
+  .ctrl { width: 48px; height: 48px; flex: none; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--ch-dorado-texto); background: transparent; color: var(--ch-dorado-texto); cursor: pointer; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo); }
+  .ctrl:hover { background: var(--ch-dorado-texto); color: var(--ch-blanco); }
+  .ctrl svg { width: 18px; height: 18px; }
+  .oscuro .ctrl { border-color: var(--ch-dorado); color: var(--ch-dorado); }
+  .oscuro .ctrl:hover { background: var(--ch-dorado); color: var(--ch-noche); }
+  .ctrl:focus-visible { outline: 2px solid var(--ch-dorado-texto); outline-offset: 3px; }
+  .puntos { display: flex; gap: var(--ch-esp-2); align-items: center; flex-wrap: wrap; justify-content: center; }
+  .punto { width: 44px; height: 44px; border: 0; background: transparent; padding: 0; cursor: pointer; display: grid; place-items: center; }
+  .punto::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: rgb(197 162 100 / .45); transition: width var(--ch-dur-hover) var(--ch-expo), background var(--ch-dur-hover) var(--ch-expo); }
+  .punto[aria-current="true"]::before { width: 28px; border-radius: 4px; background: var(--ch-dorado); }
+  .claro .punto::before { background: rgb(138 106 46 / .35); }
+  .claro .punto[aria-current="true"]::before, .niebla .punto[aria-current="true"]::before { background: var(--ch-dorado-texto); }
+  .punto:focus-visible { outline: 2px solid var(--ch-dorado); outline-offset: 2px; }
+  .contador { font-variant-numeric: tabular-nums; font-size: .875rem; min-width: 4.5em; text-align: center; }
+
+  .carrusel-info { margin-top: var(--ch-esp-6); display: grid; gap: var(--ch-esp-2); justify-items: center; text-align: center; min-height: 168px; align-content: start; }
+  .info-nombre { font-size: clamp(1.625rem, 2.2vw, 2.25rem); }
+  .info-detalle { font-size: .9375rem; color: var(--ch-texto-suave); }
+  .oscuro .info-detalle { color: var(--ch-texto-noche-suave); }
+  .info-precio { font-weight: 600; font-size: 1.125rem; font-variant-numeric: tabular-nums; }
+  .info-precio small { font-weight: 400; font-size: .875rem; color: var(--ch-texto-suave); }
+  .info-precio--consulta { font-size: .9375rem; color: var(--ch-texto-suave); }
+  .info-ir { margin-top: var(--ch-esp-2); }
+  .tamanos { display: flex; gap: var(--ch-esp-2); margin: var(--ch-esp-2) 0 0; padding: 0; border: 0; min-width: 0; justify-content: center; }
+  .tamanos[hidden] { display: none; }
+  .tamanos legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .tamanos label { position: relative; }
+  .tamanos input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .tamanos span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--ch-esp-5); border: 1px solid rgb(28 42 67 / .25); border-radius: var(--ch-radio-boton); font-weight: 600; font-size: .9375rem; font-variant-numeric: tabular-nums; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo), border-color var(--ch-dur-hover) var(--ch-expo); }
+  .tamanos input:checked + span { background: var(--ch-azul); border-color: var(--ch-azul); color: var(--ch-blanco); }
+  .tamanos input:focus-visible + span { outline: 2px solid var(--ch-azul); outline-offset: 3px; }
+
+  @media (max-width: 719px) {
+    .carrusel-pista { height: min(50svh, 420px); }
+    .carrusel-info { min-height: 0; }
+    .puntos { order: 5; width: 100%; }
+  }
+
+  /* Origen: la foto cabe en la ventana */
+  .origen { display: grid; gap: var(--ch-esp-7); align-items: center; }
+  .origen-foto { margin: 0; display: grid; place-items: center; border-radius: var(--ch-radio-tarjeta); overflow: hidden; border: var(--ch-borde-dorado); box-shadow: var(--ch-sombra-tarjeta); background: var(--ch-noche-profunda); }
+  .origen-foto img { width: auto; height: auto; max-width: 100%; max-height: min(72svh, 620px); object-fit: contain; }
+  .origen .lead { margin-top: var(--ch-esp-6); color: var(--ch-texto-noche-suave); }
+  .cifras { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--ch-esp-5); margin-top: var(--ch-esp-7); padding-top: var(--ch-esp-6); border-top: var(--ch-borde-dorado); }
+  .cifras strong { display: block; font: 500 clamp(2rem, 3vw, 2.75rem)/1 var(--ch-font-titular); color: var(--ch-dorado-brillo); }
+  .cifras span { display: block; margin-top: var(--ch-esp-2); font-size: .875rem; color: var(--ch-texto-noche-suave); }
+  @media (min-width: 960px) { .origen { grid-template-columns: minmax(0, 5fr) 6fr; } }
+  @media (max-width: 959px) { .origen-foto img { max-height: min(60svh, 520px); } }
+
+  /* Cierre y pie */
+  .cierre { text-align: center; }
+  .cierre .wrap { display: grid; justify-items: center; gap: var(--ch-esp-5); }
+  .cierre h2 { max-width: 18ch; }
+  .cierre p { color: var(--ch-texto-noche-suave); }
+  .cierre .acciones { margin-inline: auto; margin-top: var(--ch-esp-3); }
+  .pie { background: var(--ch-noche-profunda); color: var(--ch-texto-noche-suave); padding-block: var(--ch-esp-8) var(--ch-esp-6); font-size: .9375rem; }
+  .pie-grid { display: grid; gap: var(--ch-esp-7); }
+  .pie h2 { font: 600 .9375rem/1.4 var(--ch-font-texto); color: var(--ch-dorado); margin-bottom: var(--ch-esp-3); }
+  .pie ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ch-esp-1); }
+  .pie a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  .pie a:hover { color: var(--ch-blanco); text-decoration: underline; text-underline-offset: 4px; }
+  .pie .logo img { height: 28px; }
+  .pie p + p { margin-top: var(--ch-esp-2); }
+  .advertencia { margin-top: var(--ch-esp-8); padding-top: var(--ch-esp-5); border-top: var(--ch-borde-dorado); text-align: center; font-weight: 600; letter-spacing: .16em; font-size: .8125rem; color: var(--ch-blanco); max-width: none; }
+  @media (min-width: 760px) { .pie-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+
+  /* Movimiento ligado al scroll: avanza y retrocede con el visitante */
+  @keyframes ch-subir { from { opacity: 0; transform: translateY(28px); } }
+  @keyframes ch-zoom { from { transform: scale(1.14); } }
+  @keyframes ch-ventana { from { clip-path: inset(14% 8% round 4px); } to { clip-path: inset(0 round 4px); } }
+  @keyframes ch-parallax { to { transform: translateY(-70px); } }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .revela { animation: ch-subir linear both; animation-timeline: view(); animation-range: entry 5% cover 28%; }
+      .origen-foto { animation: ch-subir linear both; animation-timeline: view(); animation-range: entry 5% cover 35%; }
+      .escena-parallax { animation: ch-parallax linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+    }
+  }
+  /* Respaldo sin scroll-timeline: IntersectionObserver añade .visible */
+  .sin-timeline .revela, .sin-timeline .origen-foto { transition: opacity var(--ch-dur-revelado) var(--ch-expo), transform var(--ch-dur-revelado) var(--ch-expo), clip-path 1000ms var(--ch-expo); }
+  .sin-timeline .revela:not(.visible) { opacity: 0; transform: translateY(28px); }
+  .sin-timeline .origen-foto:not(.visible) { opacity: 0; transform: translateY(28px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .l, .hero .lead, .hero .acciones, .hero .garantias, .escena { animation: none; }
+    .marco-hero { transform: none; }
+    .linea:hover .marco img { transform: none; }
+    .diapo { transition-duration: 150ms; }
+    .sin-timeline .revela:not(.visible), .sin-timeline .origen-foto:not(.visible) { opacity: 1; transform: none; clip-path: none; }
+  }
+
+  /* Salto entre secciones: el enlace desplaza la página con JavaScript. Sin JavaScript, el enlace funciona como ancla normal. */
+  section[id] { scroll-margin-top: 76px; }
+  /* Durante un salto y hasta el primer gesto del usuario, las revelaciones ligadas al scroll se pausan: no se repiten al llegar. */
+  .saltando .revela, .saltando .origen-foto { animation: none; }
+
+  /* Fondos por sección (imágenes de marca dedicadas). Las capas de texto se mantienen legibles:
+     marfil con texto tinta en Presentaciones, caña a la izquierda y azul a la derecha en Origen,
+     azul noche con el centro despejado para los botones en Cierre. */
+  /* Ilustraciones de Presentaciones y Cocktails: la imagen ocupa todo el ancho (2:1), así las cañas de los bordes
+     siempre quedan visibles; los bordes superior e inferior se difuminan hacia el papel. */
+  #presentaciones, #cocktails { background: #f4efe6; overflow-x: clip; }
+  #presentaciones::after, #cocktails::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); width: 100%; aspect-ratio: 2 / 1; z-index: -1; pointer-events: none;
+    background-repeat: no-repeat; background-position: center; background-size: 100% 100%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); }
+  #presentaciones::after { background-image: url("assets/img/fondo-aguardientes-cana.webp"); }
+  #cocktails::after { background-image: url("assets/img/fondo-cocktails-cana.webp"); }
+  #origen { background: url("assets/img/fondo-origen.webp") center / cover no-repeat; }
+  @media (max-width: 959px) {
+    #origen { background: linear-gradient(180deg, rgb(16 26 49 / .9), rgb(16 26 49 / .82)), url("assets/img/fondo-origen.webp") 30% center / cover no-repeat; }
+  }
+  .cierre { background: url("assets/img/fondo-cierre.webp") center / cover no-repeat; }
+  /* Cierre como franja: en escritorio el texto va a la izquierda y los dos botones a la derecha, en la misma línea */
+  .cierre-texto { display: grid; gap: var(--ch-esp-3); justify-items: center; }
+  @media (min-width: 960px) {
+    .cierre .wrap { grid-template-columns: minmax(0, 1fr) auto; align-items: center; justify-items: stretch; column-gap: var(--ch-esp-8); text-align: left; }
+    .cierre-texto { justify-items: start; text-align: left; }
+    .cierre h2 { max-width: 20ch; }
+    .cierre .acciones { justify-self: end; margin: 0; grid-template-columns: repeat(2, auto); }
+    .cierre .acciones .boton { min-width: 15rem; }
+  }
+  @media (min-width: 560px) { .cierre .acciones .boton { white-space: nowrap; padding-inline: var(--ch-esp-5); } }
+  /* Fusión entre secciones: cada sección con imagen de fondo funde su borde superior con la sección anterior.
+     Los pseudoelementos quedan detrás del contenido (z-index -1) y no bloquean clics. */
+  #presentaciones, #origen, #cocktails, .cierre { position: relative; isolation: isolate; }
+  /* Separador dorado de 1 px en el borde superior de las secciones con imagen: marca el cambio entre claro y oscuro sin mezclar colores. */
+  #presentaciones::before, #origen::before, #cocktails::before, .cierre::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 1px; z-index: -1; pointer-events: none; background: linear-gradient(90deg, transparent, var(--ch-dorado) 18%, var(--ch-dorado) 82%, transparent); }
+
+  @media (max-width: 719px) {
+    #presentaciones::after, #cocktails::after { width: 200vw; left: 0; right: auto; background-position: left center; }
+  }
+
+  /* Aviso de cookies: se muestra hasta que el visitante decide. Aceptar y rechazar tienen el mismo peso. */
+  .avisocookies { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 40; max-width: 640px; margin-inline: auto; display: grid; gap: var(--ch-esp-3); padding: var(--ch-esp-4) var(--ch-esp-5); background: var(--ch-noche-profunda); color: var(--ch-texto-noche-suave); border: var(--ch-borde-dorado); border-radius: var(--ch-radio-tarjeta); box-shadow: var(--ch-sombra-tarjeta); font-size: .9375rem; }
+  .avisocookies[hidden] { display: none; }
+  .avisocookies p { margin: 0; }
+  .avisocookies a { color: var(--ch-dorado-brillo); }
+  .avisocookies .acciones-cookies { display: grid; grid-template-columns: 1fr 1fr; gap: var(--ch-esp-3); }
+  .avisocookies .boton { min-height: 44px; padding-inline: var(--ch-esp-4); font-size: .8125rem; }
+  @media (min-width: 560px) { .avisocookies { grid-template-columns: 1fr auto; align-items: center; } .avisocookies .acciones-cookies { grid-template-columns: auto auto; } }
+  /* Ventanas bajas (≈ 830 px útiles con barras del navegador a 100 %): la pista se mantiene grande y se
+     comprimen solo los espacios de la información, para que el bloque completo quepa bajo la cabecera. */
+  @media (min-width: 720px) and (max-height: 900px) {
+    .carrusel-pista { height: min(58svh, 520px); }
+    .carrusel-info { margin-top: var(--ch-esp-2); gap: var(--ch-esp-1); min-height: 0; }
+    .carrusel-info .info-ir, .carrusel-info .tamanos { margin-top: 0; }
+    .carrusel-controles { margin-top: var(--ch-esp-3); }
+  }
+</style>
+</head>
+<body>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- Enlaces: todos apuntan a la tienda actual (chancayano.com) hasta verificar sus rutas o tener /tienda (HU-05). -->
+<header class="cabecera" id="cabecera">
+  <div class="wrap">
+    <a class="logo" href="#inicio"><img src="assets/img/logo-dorado.webp" alt="Chancayano, inicio" width="2560" height="460"></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#lineas">Líneas</a>
+      <a href="#presentaciones">Presentaciones</a>
+      <a href="#origen">Origen</a>
+      <a href="#cocktails">Cocktails</a>
+    </nav>
+    <details class="menu-movil">
+      <summary class="boton boton--fantasma">Menú</summary>
+      <nav class="menu-movil-panel" aria-label="Secciones">
+        <a href="#lineas">Líneas</a>
+        <a href="#presentaciones">Presentaciones</a>
+        <a href="#origen">Origen</a>
+        <a href="#cocktails">Cocktails</a>
+      </nav>
+    </details>
+    <a class="boton boton--fantasma" href="https://chancayano.com">Ver tienda</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="hero oscuro" id="inicio">
+    <div class="wrap">
+      <div>
+        <h1><span class="l">Aguardiente de</span><span class="l">Chancay Baños</span></h1>
+        <p class="lead">Aguardiente artesanal peruano de caña de azúcar, de Chancay Baños, Cajamarca. Destilados, macerados y cocktails en presentaciones de 50 ml a 500 ml.</p>
+        <div class="acciones">
+          <a class="boton boton--dorado" href="https://chancayano.com">Ver tienda</a>
+          <a class="boton boton--fantasma" href="#presentaciones">Ver presentaciones</a>
+        </div>
+        <ul class="garantias">
+          <li>Desde 2002</li>
+          <li>Santa Cruz, Cajamarca</li>
+          <li>Pedidos por WhatsApp</li>
+        </ul>
+      </div>
+      <div class="escena-parallax">
+        <div class="escena" id="escena">
+          <figure class="marco-hero">
+            <img src="assets/img/cogollo-banner.webp" alt="Aguardiente Cogollo Premium de 500 ml sobre una mesa de madera, con un vaso y una ventana al cañaveral" width="1400" height="835" fetchpriority="high">
+          </figure>
+          <div class="reflejo" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion oscuro" id="lineas" aria-labelledby="t-lineas">
+    <div class="wrap">
+      <div class="intro">
+        <h2 id="t-lineas">Nuestras líneas</h2>
+        <p>Cada línea abre su catálogo en la tienda.</p>
+        <div class="filete"></div>
+      </div>
+      <div class="lineas">
+        <a class="linea revela" href="https://chancayano.com">
+          <div class="marco"><img src="assets/img/banner-cogollo-premium-1200x716.webp" alt="Aguardiente Cogollo Premium" width="1200" height="716" loading="lazy"></div>
+          <div class="texto"><h3>Premium</h3><p>Aguardiente Cogollo, 56 % vol.</p><span class="ir">Ver en la tienda</span></div>
+        </a>
+        <a class="linea revela" href="https://chancayano.com">
+          <div class="marco"><img src="assets/img/destilados.webp" alt="Aguardiente Cogollo en mesa de madera" width="1400" height="835" loading="lazy"></div>
+          <div class="texto"><h3>Destilados</h3><p>Aguardiente tradicional de caña.</p><span class="ir">Ver en la tienda</span></div>
+        </a>
+        <a class="linea revela" href="https://chancayano.com">
+          <div class="marco"><img src="assets/img/macerado-de-quina-chancayano-1200x716.webp" alt="Macerados de quina de Chancayano en distintas presentaciones" width="1200" height="716" loading="lazy"></div>
+          <div class="texto"><h3>Macerados</h3><p>Macerado de quina en varias presentaciones.</p><span class="ir">Ver en la tienda</span></div>
+        </a>
+        <a class="linea revela" href="https://chancayano.com">
+          <div class="marco"><img src="assets/img/cocktails-banner-chancayano-25.webp" alt="Cocktails de Chancayano de distintos sabores" width="1000" height="571" loading="lazy"></div>
+          <div class="texto"><h3>Cocktails</h3><p>Fresa, café, maíz morado, maracumango y maracuyá.</p><span class="ir">Ver en la tienda</span></div>
+        </a>
+        <a class="linea revela" href="https://chancayano.com">
+          <div class="marco"><img src="assets/img/linea-de-nutricion-chancayano-768x439.webp" alt="Jugo y miel de caña de la línea de nutrición" width="768" height="439" loading="lazy"></div>
+          <div class="texto"><h3>Nutrición</h3><p>Jugo y miel de caña.</p><span class="ir">Ver en la tienda</span></div>
+        </a>
+        <a class="linea revela" href="https://chancayano.com/producto/cocktail-de-maracumango-edicion-especial-carnaval-de-cajamarca-500ml-chancayano/">
+          <div class="marco"><img src="assets/img/carnaval-maracumango-500.webp" alt="Cocktail de maracumango, edición especial Carnaval de Cajamarca" width="1100" height="1100" loading="lazy"></div>
+          <div class="texto"><h3>Edición especial</h3><p>Cocktail de maracumango, Carnaval de Cajamarca. 500 ml, 15 % vol. Desde S/ 35.00.</p><span class="ir">Ver edición especial</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion claro" id="presentaciones" aria-labelledby="t-pres">
+    <div class="wrap">
+      <div class="intro">
+        <h2 id="t-pres">Aguardientes y presentaciones</h2>
+        <p>Elige la botella con las flechas. Los precios son los publicados hoy en chancayano.com; cada presentación tiene su ficha.</p>
+        <div class="filete"></div>
+      </div>
+      <div class="carrusel carrusel--claro" data-carrusel data-nombre-carrusel="Presentaciones">
+        <ul class="carrusel-pista">
+          <li class="diapo" data-nombre="Cogollo Premium" data-detalle="Aguardiente premium · 56 % vol." data-tamanos data-precio="S/ 70.00" data-href="https://chancayano.com">
+            <a class="diapo-enlace" href="https://chancayano.com">
+              <img data-tam="500" src="assets/img/c-1200x1200.webp" alt="Aguardiente Cogollo Premium de 500 ml" width="1200" height="1200" loading="lazy">
+              <img data-tam="50" src="assets/img/catalogo-chancayano-sp-page-0002-24-1024.webp" alt="Aguardiente Cogollo Premium de 50 ml" width="1024" height="1024" loading="lazy" hidden>
+            </a>
+          </li>
+          <li class="diapo" data-nombre="Aguardiente Tradicional 500 ml" data-detalle="46 % vol. · caja de 12: S/ 198.00" data-precio="Desde S/ 35.00" data-href="https://chancayano.com/producto/aguardiente-tradicional-500ml-chancayano/">
+            <a class="diapo-enlace" href="https://chancayano.com/producto/aguardiente-tradicional-500ml-chancayano/">
+              <img src="assets/img/tradicional-500.webp" alt="Aguardiente Tradicional de 500 ml" width="1150" height="1150" loading="lazy">
+            </a>
+          </li>
+          <li class="diapo diapo--multiplica" data-nombre="Aguardiente Tradicional Añejo 2 años" data-detalle="46 % vol. · 187 ml desde S/ 15.00 · 500 ml desde S/ 35.00" data-precio="Desde S/ 15.00" data-href="https://chancayano.com/producto/aguardiente-tradicional-187ml-anejo-2-anos-chancayano/">
+            <a class="diapo-enlace" href="https://chancayano.com/producto/aguardiente-tradicional-187ml-anejo-2-anos-chancayano/">
+              <img src="assets/img/un-destilado-debidamente-seleccionado-ae.webp" alt="Botella de Añejo 2 años en barril de vidrio" width="640" height="853" loading="lazy">
+            </a>
+          </li>
+          <li class="diapo" data-nombre="Aguardiente Tradicional 187 ml" data-detalle="46 % vol. · caja de 24: S/ 160.00" data-precio="Desde S/ 10.00" data-href="https://chancayano.com/producto/aguardiente-tradicional-187ml-chancayano/">
+            <a class="diapo-enlace" href="https://chancayano.com/producto/aguardiente-tradicional-187ml-chancayano/">
+              <img src="assets/img/tradicional-187.webp" alt="Aguardiente Tradicional de 187 ml" width="1150" height="1150" loading="lazy">
+            </a>
+          </li>
+        </ul>
+
+        <div class="carrusel-info">
+          <h3 class="info-nombre"></h3>
+          <p class="info-detalle"></p>
+          <fieldset class="tamanos" hidden>
+            <legend>Tamaño</legend>
+            <label><input type="radio" name="cogollo" value="500" checked><span>500 ml</span></label>
+            <label><input type="radio" name="cogollo" value="50"><span>50 ml</span></label>
+          </fieldset>
+          <p class="info-precio"></p>
+          <a class="boton boton--primario info-ir" href="https://chancayano.com">Ver producto</a>
+        </div>
+
+        <div class="carrusel-controles">
+          <button class="ctrl" type="button" data-prev aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="ctrl ctrl--pausa" type="button" data-pausa aria-label="Pausar"></button>
+          <div class="puntos" role="group" aria-label="Elegir producto"></div>
+          <span class="contador" aria-hidden="true"></span>
+          <button class="ctrl" type="button" data-next aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion oscuro" id="origen" aria-labelledby="t-origen">
+    <div class="wrap origen">
+      <figure class="origen-foto">
+        <img src="assets/img/entry-content-post-2024.webp" alt="Aguardiente Cogollo junto a una ventana que da al cañaveral" width="1500" height="1500" loading="lazy">
+      </figure>
+      <div class="revela">
+        <h2 id="t-origen">Caña de Chancay Baños, Santa Cruz</h2>
+        <div class="filete"></div>
+        <p class="lead">Chancayano elabora su aguardiente con caña de azúcar de Chancay Baños, en la provincia de Santa Cruz, Cajamarca.</p>
+        <div class="cifras">
+          <div><strong>2002</strong><span>Año en la etiqueta del Cogollo</span></div>
+          <div><strong>56 %</strong><span>Grado del Cogollo Premium</span></div>
+          <div><strong>46 %</strong><span>Grado del Tradicional</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion niebla" id="cocktails" aria-labelledby="t-cocktails">
+    <div class="wrap">
+      <div class="intro">
+        <h2 id="t-cocktails">Cocktails de la casa</h2>
+        <p>Cinco sabores en 187 ml y 500 ml. Elige el formato y el precio se actualiza con la ficha.</p>
+        <div class="filete"></div>
+      </div>
+      <div class="carrusel" data-carrusel data-nombre-carrusel="Cocktails">
+                <ul class="carrusel-pista">
+          <li class="diapo" data-nombre="Cocktail de Fresa" data-detalle="15 % vol." data-selector data-precio187="S/ 12.00" data-precio500="S/ 30.00" data-href187="https://chancayano.com/producto/cocktail-de-fresa-187ml-chancayano/" data-href500="https://chancayano.com/producto/cocktail-de-crema-de-fresa-500-ml/">
+            <a class="diapo-enlace" href="https://chancayano.com/producto/cocktail-de-crema-de-fresa-500-ml/">
+              <img data-tam="500" src="assets/img/catalogo-chancayano-sp-page-0002-8-1-102.webp" alt="Cocktail de fresa de 500 ml" width="1024" height="1024" loading="lazy">
+              <img data-tam="187" src="assets/img/catalogo-chancayano-sp-page-0002-7-1024x.webp" alt="Cocktail de fresa de 187 ml" width="1024" height="1024" loading="lazy" hidden>
+            </a>
+          </li>
+          <li class="diapo" data-nombre="Cocktail de Café" data-detalle="15 % vol." data-selector data-precio187="S/ 13.00" data-precio500="S/ 30.00" data-href187="https://chancayano.com/producto/cocktail-de-cafe-187ml-chancayano/" data-href500="https://chancayano.com/producto/cocktail-de-cafe-500ml-chancayano/">
+            <a class="diapo-enlace" href="https://chancayano.com/producto/cocktail-de-cafe-500ml-chancayano/">
+              <img data-tam="500" src="assets/img/catalogo-chancayano-sp-page-0002-6-1024x.webp" alt="Cocktail de café de 500 ml" width="1024" height="1024" loading="lazy">
+              <img data-tam="187" src="assets/img/catalogo-chancayano-sp-page-0002-5-1024x.webp" alt="Cocktail de café de 187 ml" width="1024" height="1024" loading="lazy" hidden>
+            </a>
+          </li>
+          <li class="diapo" data-nombre="Cocktail de Maíz morado" data-detalle="15 % vol." data-selector data-precio187="S/ 13.00" data-precio500="S/ 30.00" data-href187="https://chancayano.com/producto/cocktail-de-maiz-morado-187ml-chancayano-copia/" data-href500="https://chancayano.com/producto/cocktail-de-maiz-morado-500ml-chancayano/">
+            <a class="diapo-enlace" href="https://chancayano.com/producto/cocktail-de-maiz-morado-500ml-chancayano/">
+              <img data-tam="500" src="assets/img/catalogo-chancayano-sp-page-0002-10-1024.webp" alt="Cocktail de maíz morado de 500 ml" width="1024" height="1024" loading="lazy">
+              <img data-tam="187" src="assets/img/catalogo-chancayano-sp-page-0002-9-1024x.webp" alt="Cocktail de maíz morado de 187 ml" width="1024" height="1024" loading="lazy" hidden>
+            </a>
+          </li>
+          <li class="diapo" data-nombre="Cocktail de Maracumango" data-detalle="15 % vol." data-selector data-precio187="S/ 13.00" data-precio500="S/ 30.00" data-href187="https://chancayano.com/producto/cocktail-de-maracumango-187ml-chancayano/" data-href500="https://chancayano.com/producto/cocktail-de-maracumango-500ml-chancayano/">
+            <a class="diapo-enlace" href="https://chancayano.com/producto/cocktail-de-maracumango-500ml-chancayano/">
+              <img data-tam="500" src="assets/img/cocktail-maracumango-500.webp" alt="Cocktail de maracumango de 500 ml" width="1024" height="1024" loading="lazy">
+              <img data-tam="187" src="assets/img/cocktail-maracumango-187.webp" alt="Cocktail de maracumango de 187 ml" width="1024" height="1024" loading="lazy" hidden>
+            </a>
+          </li>
+          <li class="diapo" data-nombre="Cocktail de Maracuyá" data-detalle="15 % vol." data-selector data-precio187="S/ 13.00" data-precio500="S/ 30.00" data-href187="https://chancayano.com/producto/cocktail-de-maracuya-187ml-chancayano/" data-href500="https://chancayano.com/producto/cocktail-de-maracuya-500ml-chancayano/">
+            <a class="diapo-enlace" href="https://chancayano.com/producto/cocktail-de-maracuya-500ml-chancayano/">
+              <img data-tam="500" src="assets/img/cocktail-maracuya-500.webp" alt="Cocktail de maracuyá de 500 ml" width="1024" height="1024" loading="lazy">
+              <img data-tam="187" src="assets/img/cocktail-maracuya-187.webp" alt="Cocktail de maracuyá de 187 ml" width="1024" height="1024" loading="lazy" hidden>
+            </a>
+          </li>
+        </ul>
+
+        <div class="carrusel-info">
+          <h3 class="info-nombre"></h3>
+          <p class="info-detalle"></p>
+          <fieldset class="tamanos" hidden>
+            <legend>Formato</legend>
+            <label><input type="radio" name="cocktail" value="500" checked><span>500 ml</span></label>
+            <label><input type="radio" name="cocktail" value="187"><span>187 ml</span></label>
+          </fieldset>
+          <p class="info-precio"></p>
+          <a class="boton boton--primario info-ir" href="https://chancayano.com">Ver producto</a>
+        </div>
+
+        <div class="carrusel-controles">
+          <button class="ctrl" type="button" data-prev aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="ctrl ctrl--pausa" type="button" data-pausa aria-label="Pausar"></button>
+          <div class="puntos" role="group" aria-label="Elegir cocktail"></div>
+          <span class="contador" aria-hidden="true"></span>
+          <button class="ctrl" type="button" data-next aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion oscuro cierre" aria-labelledby="t-cierre">
+    <div class="wrap revela">
+      <div class="cierre-texto">
+        <h2 id="t-cierre">Tu botella de Chancayano, en la tienda</h2>
+        <p>Pide en la tienda o escríbenos por WhatsApp.</p>
+      </div>
+      <div class="acciones">
+        <a class="boton boton--dorado" href="https://chancayano.com">Ver tienda</a>
+        <a class="boton boton--fantasma" href="https://wa.me/51901681957">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie" id="contacto">
+  <div class="wrap">
+    <div class="pie-grid">
+      <div>
+        <a class="logo" href="#inicio"><img src="assets/img/logo-dorado.webp" alt="Chancayano" width="2560" height="460" loading="lazy"></a>
+        <p style="margin-top: var(--ch-esp-4)">Distrito Chancay Baños, provincia de Santa Cruz, Cajamarca, Perú.</p>
+        <p><a href="https://wa.me/51901681957">WhatsApp 901 681 957</a></p>
+        <p><a href="mailto:medioschancayano@gmail.com">medioschancayano@gmail.com</a></p>
+      </div>
+      <nav aria-labelledby="pie-lineas">
+        <h2 id="pie-lineas">Líneas</h2>
+        <ul>
+          <li><a href="https://chancayano.com">Premium</a></li>
+          <li><a href="https://chancayano.com">Destilados</a></li>
+          <li><a href="https://chancayano.com">Macerados</a></li>
+          <li><a href="https://chancayano.com">Cocktails</a></li>
+          <li><a href="https://chancayano.com">Nutrición</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="pie-ayuda">
+        <h2 id="pie-ayuda">Ayuda</h2>
+        <ul>
+          <li><a href="https://chancayano.com">Envíos y cobertura</a></li>
+          <li><a href="https://chancayano.com">Devoluciones</a></li>
+          <li><a href="https://chancayano.com">Libro de Reclamaciones</a></li>
+          <li><a href="privacidad.html">Política de privacidad</a></li>
+          <li><a href="terminos.html">Términos y condiciones</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="advertencia">TOMAR BEBIDAS ALCOHÓLICAS EN EXCESO ES DAÑINO</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const movil = matchMedia('(max-width: 719px)');
+
+  // Cabecera: toma fondo al dejar el inicio del hero
+  const cab = document.getElementById('cabecera');
+  const alScroll = () => cab.classList.toggle('con-fondo', scrollY > 40);
+  addEventListener('scroll', alScroll, { passive: true }); alScroll();
+
+  // Respaldo de revelados si el navegador no tiene scroll-timeline
+  if (document.documentElement.classList.contains('sin-timeline')) {
+    const objetivos = document.querySelectorAll('.revela, .origen-foto');
+    if ('IntersectionObserver' in window && !reducido) {
+      const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' });
+      objetivos.forEach(el => io.observe(el));
+    } else {
+      objetivos.forEach(el => el.classList.add('visible'));
+    }
+  }
+
+  // Inclinación del hero que sigue al puntero, con interpolación suave
+  const escena = document.getElementById('escena');
+  const marco = escena && escena.querySelector('.marco-hero');
+  if (marco && !reducido && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let tx = 0, ty = 0, x = 0, y = 0, activo = false;
+    const paso = () => {
+      x += (tx - x) * 0.12; y += (ty - y) * 0.12;
+      marco.style.setProperty('--ry', x.toFixed(2)); marco.style.setProperty('--rx', y.toFixed(2));
+      if (Math.abs(tx - x) > 0.01 || Math.abs(ty - y) > 0.01) requestAnimationFrame(paso); else activo = false;
+    };
+    const arrancar = () => { if (!activo) { activo = true; requestAnimationFrame(paso); } };
+    escena.addEventListener('pointermove', (e) => {
+      const r = escena.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 8;
+      ty = -((e.clientY - r.top) / r.height - 0.5) * 6;
+      arrancar();
+    });
+    escena.addEventListener('pointerleave', () => { tx = 0; ty = 0; arrancar(); });
+  }
+
+  // ───── Carrusel 3D ─────
+  // Cada carrusel es un bucle. JS solo calcula la posición relativa de cada diapositiva
+  // (distancia d a la central); la animación 3D vive en CSS con transform y opacity.
+  const precioCogollo = { '500': 'S/ 70.00', '50': 'S/ 10.00' };
+
+  document.querySelectorAll('[data-carrusel]').forEach((car) => {
+    const diapos = [...car.querySelectorAll('.diapo')];
+    const n = diapos.length;
+    const info = car.querySelector('.carrusel-info');
+    const nombre = info.querySelector('.info-nombre');
+    const detalle = info.querySelector('.info-detalle');
+    const precio = info.querySelector('.info-precio');
+    const ir = info.querySelector('.info-ir');
+    const tamanos = info.querySelector('.tamanos');
+    const puntos = car.querySelector('.puntos');
+    const contador = car.querySelector('.contador');
+    const pista = car.querySelector('.carrusel-pista');
+    let cur = 0;
+    let tamano = '500';
+
+    // Puntos de posición (uno por diapositiva)
+    diapos.forEach((d, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'punto';
+      b.setAttribute('aria-label', `${d.dataset.nombre}`);
+      b.addEventListener('click', () => ir_a(i));
+      puntos.appendChild(b);
+    });
+
+    // Distancia circular a la central
+    const dist = (i) => {
+      let d = ((i - cur) % n + n) % n;
+      if (d > n / 2) d -= n;
+      return d;
+    };
+
+    const aplicar = () => {
+      const ang = reducido ? 0 : (movil.matches ? 20 : 38);
+      const desp = movil.matches ? 52 : 62;
+      diapos.forEach((el, i) => {
+        const d = dist(i);
+        const a = Math.abs(d);
+        const activo = d === 0;
+        el.style.setProperty('--x', `${d * desp}%`);
+        el.style.setProperty('--ry', `${reducido ? 0 : -d * ang}deg`);
+        el.style.setProperty('--z', reducido ? '0px' : `${-a * 180}px`);
+        el.style.setProperty('--s', `${Math.max(0.72, 1 - a * 0.14)}`);
+        el.style.setProperty('--br', activo ? '1' : '0.86');
+        el.style.setProperty('--op', a >= 2 ? '0' : '1');
+        el.style.setProperty('--zi', `${10 - a}`);
+        el.style.setProperty('--pe', a <= 1 ? 'auto' : 'none');
+        el.setAttribute('aria-current', activo ? 'true' : 'false');
+        el.setAttribute('aria-hidden', a >= 2 ? 'true' : 'false');
+        const enlace = el.querySelector('.diapo-enlace');
+        enlace.tabIndex = activo ? 0 : -1;
+      });
+      [...puntos.children].forEach((p, i) => p.setAttribute('aria-current', i === cur ? 'true' : 'false'));
+      contador.textContent = `${cur + 1} de ${n}`;
+      actualizarInfo();
+    };
+
+    // Selector de formato (cocktails): la imagen, el precio y el enlace cambian juntos
+    const pintarSeleccion = () => {
+      const d = diapos[cur];
+      d.querySelectorAll('img[data-tam]').forEach((im) => { im.hidden = im.dataset.tam !== tamano; });
+      const href = d.dataset['href' + tamano];
+      d.querySelector('.diapo-enlace').href = href;
+      ir.href = href;
+      precio.innerHTML = `<small>Desde</small> <span>${d.dataset['precio' + tamano]}</span>`;
+    };
+
+    const actualizarInfo = () => {
+      const d = diapos[cur];
+      nombre.textContent = d.dataset.nombre;
+      if (detalle) { detalle.textContent = d.dataset.detalle || ''; detalle.hidden = !d.dataset.detalle; }
+      ir.href = d.dataset.href;
+      if (d.hasAttribute('data-selector')) {
+        if (tamanos) tamanos.hidden = false;
+        pintarSeleccion();
+        precio.classList.remove('info-precio--consulta');
+      } else if (d.hasAttribute('data-tamanos')) {
+        if (tamanos) tamanos.hidden = false;
+        precio.innerHTML = `<small>Desde</small> <span>${precioCogollo[tamano]}</span>`;
+        precio.classList.remove('info-precio--consulta');
+      } else {
+        if (tamanos) tamanos.hidden = true;
+        if (d.hasAttribute('data-consulta')) {
+          precio.textContent = d.dataset.precio;
+          precio.classList.add('info-precio--consulta');
+        } else {
+          precio.textContent = d.dataset.precio;
+          precio.classList.remove('info-precio--consulta');
+        }
+      }
+      // Anuncia el cambio para lectores de pantalla sin repetir el texto de la ficha
+      info.setAttribute('aria-label', `${d.dataset.nombre}, ${cur + 1} de ${n}`);
+    };
+
+    const ir_a = (i) => { cur = ((i % n) + n) % n; aplicar(); arrancar(); };
+    const siguiente = () => ir_a(cur + 1);
+    const anterior = () => ir_a(cur - 1);
+
+    car.querySelector('[data-next]').addEventListener('click', siguiente);
+    car.querySelector('[data-prev]').addEventListener('click', anterior);
+
+    // Clic en una vecina la centra; clic en la central sigue el enlace (la tienda)
+    diapos.forEach((el, i) => {
+      el.querySelector('.diapo-enlace').addEventListener('click', (e) => {
+        if (pista.dataset.arrastrado === '1') { e.preventDefault(); pista.dataset.arrastrado = '0'; return; }
+        if (i !== cur) { e.preventDefault(); ir_a(i); }
+      });
+    });
+
+    // Teclado: flechas cuando el foco está en el carrusel
+    car.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); siguiente(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); anterior(); }
+    });
+
+    // Arrastre o deslizamiento (umbral 40 px)
+    let x0 = null;
+    pista.addEventListener('pointerdown', (e) => { if (e.pointerType === 'mouse' && e.button !== 0) return; x0 = e.clientX; pista.dataset.arrastrado = '0'; });
+    pista.addEventListener('pointerup', (e) => {
+      if (x0 === null) return;
+      const dx = e.clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) { pista.dataset.arrastrado = '1'; dx < 0 ? siguiente() : anterior(); }
+    });
+    pista.addEventListener('pointercancel', () => { x0 = null; });
+
+    // Repinta al cambiar entre móvil y escritorio, o al cambiar la preferencia de movimiento
+    movil.addEventListener('change', aplicar);
+
+    // Selector de tamaño del Cogollo: precio al instante y fundido de la pieza
+    if (tamanos) {
+      tamanos.querySelectorAll('input[name="cocktail"]').forEach((inp) => inp.addEventListener('change', () => {
+        tamano = inp.value;
+        pintarSeleccion();
+      }));
+      const cogollo = diapos.find(d => d.hasAttribute('data-tamanos'));
+      tamanos.querySelectorAll('input[name="cogollo"]').forEach((inp) => inp.addEventListener('change', () => {
+        tamano = inp.value;
+        cogollo.querySelector('img[data-tam="500"]').hidden = tamano !== '500';
+        cogollo.querySelector('img[data-tam="50"]').hidden = tamano !== '50';
+        precio.innerHTML = `<small>Desde</small> <span>${precioCogollo[tamano]}</span>`;
+      }));
+    }
+
+
+    // ───── Reproducción automática cada 3 s ─────
+    // Se pausa con el puntero encima, con el foco dentro, al arrastrar, fuera de pantalla,
+    // en pestañas ocultas y con el botón de pausa. Con movimiento reducido empieza pausada.
+    const INTERVALO = 3000;
+    const pausaBtn = car.querySelector('[data-pausa]');
+    let timer = null, pausadoPorUsuario = reducido, enHover = false, enFoco = false, visible = true, arrastrando = false;
+    const ICONO = {
+      pausar: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>',
+      reanudar: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
+    };
+    const debePausar = () => pausadoPorUsuario || enHover || enFoco || arrastrando || !visible || document.hidden;
+    const arrancar = () => {
+      clearInterval(timer); timer = null;
+      if (!debePausar()) timer = setInterval(siguiente, INTERVALO);
+    };
+    const pintarPausa = () => {
+      pausaBtn.innerHTML = pausadoPorUsuario ? ICONO.reanudar : ICONO.pausar;
+      pausaBtn.setAttribute('aria-label', pausadoPorUsuario ? 'Reanudar' : 'Pausar');
+    };
+    pausaBtn.addEventListener('click', () => { pausadoPorUsuario = !pausadoPorUsuario; pintarPausa(); arrancar(); });
+    car.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { enHover = true; arrancar(); } });
+    car.addEventListener('pointerleave', () => { enHover = false; arrancar(); });
+    car.addEventListener('focusin', () => { enFoco = true; arrancar(); });
+    car.addEventListener('focusout', (e) => { if (!car.contains(e.relatedTarget)) { enFoco = false; arrancar(); } });
+    pista.addEventListener('pointerdown', () => { arrastrando = true; arrancar(); });
+    addEventListener('pointerup', () => { if (arrastrando) { arrastrando = false; arrancar(); } });
+    addEventListener('pointercancel', () => { if (arrastrando) { arrastrando = false; arrancar(); } });
+    document.addEventListener('visibilitychange', arrancar);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((es) => es.forEach(e => { visible = e.isIntersecting; arrancar(); }), { threshold: 0.4 }).observe(car);
+    }
+    pintarPausa();
+    aplicar();
+  });
+})();
+</script>
+<script>
+/* Enlaces internos (cabecera, logo y botones): la página se desplaza con una curva ease-in-out (900–1400 ms),
+   sincronizada con la pantalla. Es el único movimiento: al llegar no se repite ninguna animación de entrada. */
+(() => {
+  const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const CABECERA = 76;
+  // Cada paso se sincroniza con la pantalla (requestAnimationFrame) para que el movimiento sea continuo.
+  // Solo si la pestaña no está visible se usa un temporizador, porque el navegador no pinta esos fotogramas.
+  let usarTemporizador = document.hidden;
+  const siguiente = (fn) => (usarTemporizador ? setTimeout(() => fn(performance.now()), 16) : requestAnimationFrame(fn));
+  // Curva ease-in-out cúbica: arranca y frena suave, sin el tirón inicial de una curva expo.
+  const suavizar = (p) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
+  document.querySelectorAll('a[href^="#"]').forEach((enlace) => {
+    const id = enlace.getAttribute('href').slice(1);
+    if (!id || id === 'contenido') return;
+    enlace.addEventListener('click', (e) => {
+      const destino = document.getElementById(id);
+      if (!destino) return;
+      e.preventDefault();
+      history.pushState(null, '', '#' + id);
+      const objetivo = Math.max(0, destino.getBoundingClientRect().top + scrollY - CABECERA);
+      const arribar = () => {
+        destino.setAttribute('tabindex', '-1');
+        destino.focus({ preventScroll: true });
+        if (reducir) return;
+        // Las revelaciones por scroll siguen pausadas hasta que el usuario se desplace por sí mismo.
+        const gestos = ['wheel', 'touchmove', 'keydown'];
+        const soltar = () => { document.documentElement.classList.remove('saltando'); gestos.forEach((g) => window.removeEventListener(g, soltar)); };
+        setTimeout(() => gestos.forEach((g) => window.addEventListener(g, soltar, { passive: true })), 300);
+      };
+      if (reducir) { window.scrollTo(0, objetivo); arribar(); return; }
+      document.documentElement.classList.add('saltando');
+      const desde = scrollY;
+      const recorrido = objetivo - desde;
+      // Duración proporcional a la distancia: 900–1400 ms, para que se perciba como un desplazamiento y no como un salto.
+      const duracion = Math.min(1400, Math.max(900, Math.abs(recorrido) * 0.4));
+      const t0 = performance.now();
+      let conFotogramas = false;
+      const paso = (ahora) => {
+        conFotogramas = true;
+        const p = Math.min(1, (ahora - t0) / duracion);
+        window.scrollTo(0, desde + recorrido * suavizar(p));
+        if (p < 1) siguiente(paso);
+        else arribar();
+      };
+      siguiente(paso);
+      // Si el navegador no entrega fotogramas (ventana sin pintar), el movimiento continúa con temporizador.
+      setTimeout(() => { if (!conFotogramas) { usarTemporizador = true; paso(performance.now()); } }, 150);
+    });
+  });
+})();
+</script>
+<div class="avisocookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Usamos cookies solo si las acepta, para mejorar su experiencia en esta página. Puede cambiar su decisión en cualquier momento. <a href="privacidad.html">Más información</a>.</p>
+  <div class="acciones-cookies">
+    <button type="button" class="boton boton--fantasma" data-cookies="rechazar">Rechazar</button>
+    <button type="button" class="boton boton--dorado" data-cookies="aceptar">Aceptar</button>
+  </div>
+</div>
+<script>
+/* Decisión de cookies: no se activa nada no esencial hasta que el visitante acepte.
+   La decisión se guarda en localStorage (no es una cookie). Si el navegador bloquea el almacenamiento, el aviso se muestra en cada visita. */
+(() => {
+  const CLAVE = 'chancayano-cookies';
+  const aviso = document.querySelector('.avisocookies');
+  let decision = null;
+  try { decision = localStorage.getItem(CLAVE); } catch (e) { decision = null; }
+  if (decision === 'aceptar' || decision === 'rechazar') { window.chCookiesAceptadas = decision === 'aceptar'; return; }
+  aviso.hidden = false;
+  aviso.querySelectorAll('[data-cookies]').forEach((b) => b.addEventListener('click', () => {
+    const valor = b.dataset.cookies;
+    try { localStorage.setItem(CLAVE, valor); } catch (e) { /* sin almacenamiento: la decisión vale para esta visita */ }
+    window.chCookiesAceptadas = valor === 'aceptar';
+    aviso.hidden = true;
+  }));
+})();
+</script>
+</body>
+</html>
