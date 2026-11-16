@@ -31,7 +31,8 @@
   }
 }
 </script>
-<link rel="preload" as="image" href="assets/img/entry-content-post-2024.webp" fetchpriority="high">
+<link rel="preload" as="fetch" href="assets/img/cogollo-premium-vidrio-natural.glb" crossorigin>
+<link rel="preload" as="image" href="assets/img/cogollo-botella-poster.webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/tokens.css?v=3">
 <link rel="stylesheet" href="assets/animaciones.css?v=2">
 <script>
@@ -74,15 +75,23 @@
     .intro p { grid-column: 2; grid-row: 1 / span 2; align-self: end; padding-bottom: 4px; }
   }
 
-  /* Botones: planos, esquinas rectas; respuesta al pulsar */
-  .boton { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 var(--ch-esp-6); border: 0; border-radius: var(--ch-radio-boton); font: 600 var(--ch-fs-boton)/1 var(--ch-font-texto); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo), scale 160ms var(--ch-expo); }
-  .boton:active { scale: .97; }
-  .boton--primario { background: var(--ch-azul); color: var(--ch-blanco); }
-  .boton--primario:hover { background: var(--ch-azul-claro); }
-  .boton--dorado { background: var(--ch-dorado); color: var(--ch-noche); }
-  .boton--dorado:hover { background: var(--ch-dorado-brillo); }
-  .boton--fantasma { background: rgb(255 255 255 / .09); color: var(--ch-blanco); }
-  .boton--fantasma:hover { background: rgb(197 162 100 / .2); color: var(--ch-dorado-brillo); }
+  /* Botones: píldora, con relieve y un destello que cruza al pasar el puntero; respuesta al pulsar */
+  :root { --ch-radio-pildora: 999px; }
+  .boton { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 var(--ch-esp-7); border: 0; border-radius: var(--ch-radio-pildora); font: 700 var(--ch-fs-boton)/1 var(--ch-font-texto); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo), box-shadow 300ms var(--ch-expo), scale 160ms var(--ch-expo); }
+  .boton::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / .45) 50%, transparent 65%); transform: translateX(-120%); pointer-events: none; }
+  .boton:active { scale: .96; }
+  .boton--primario { background: linear-gradient(180deg, var(--ch-azul-claro) 0%, var(--ch-azul) 100%); color: var(--ch-blanco); box-shadow: inset 0 1px 0 rgb(255 255 255 / .28), 0 10px 22px -12px rgb(0 0 0 / .55); }
+  .boton--dorado { background: linear-gradient(180deg, var(--ch-dorado-brillo) 0%, var(--ch-dorado) 100%); color: var(--ch-noche); box-shadow: inset 0 1px 0 rgb(255 255 255 / .55), 0 12px 24px -12px rgb(0 0 0 / .6), 0 0 0 1px rgb(138 106 46 / .55); }
+  .boton--fantasma { background: rgb(255 255 255 / .08); color: var(--ch-blanco); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .22); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  @media (hover: hover) and (pointer: fine) {
+    .boton:hover::after { transform: translateX(120%); transition: transform 700ms var(--ch-expo); }
+    .boton--primario:hover { box-shadow: inset 0 1px 0 rgb(255 255 255 / .35), 0 14px 28px -10px rgb(0 0 0 / .65); }
+    .boton--dorado:hover { box-shadow: inset 0 1px 0 rgb(255 255 255 / .65), 0 16px 30px -10px rgb(0 0 0 / .7), 0 0 0 1px var(--ch-dorado-brillo); }
+    .boton--fantasma:hover { background: rgb(197 162 100 / .2); color: var(--ch-dorado-brillo); box-shadow: inset 0 0 0 1px rgb(226 200 143 / .6); }
+  }
+  .boton:focus-visible { outline: 2px solid var(--ch-dorado-brillo); outline-offset: 3px; }
+  .boton .flecha { width: 1.1em; height: 1.1em; flex: none; transition: transform 300ms var(--ch-expo); }
+  @media (hover: hover) and (pointer: fine) { .boton:hover .flecha { transform: translateX(3px); } .boton:hover .flecha--abajo { transform: translateY(3px); } }
   /* Grupo de acciones: en móvil los botones se apilan con el mismo ancho;
      desde 560 px van en par de igual ancho. Así el grupo siempre tiene un borde limpio. */
   .acciones { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ch-esp-3); width: min(100%, 22rem); margin-top: var(--ch-esp-7); }
@@ -103,7 +112,7 @@
   .nav a { text-decoration: none; font-size: 0.9375rem; color: var(--ch-texto-noche-suave); min-height: 44px; display: inline-flex; align-items: center; transition: color var(--ch-dur-hover) var(--ch-expo); }
   .nav a:hover, .nav a[aria-current="true"] { color: var(--ch-blanco); }
   .nav-marca { position: absolute; left: 0; bottom: 6px; width: 1px; height: 2px; background: var(--ch-dorado); transform-origin: 0 50%; transform: translateX(var(--nx, 0px)) scaleX(var(--nw, 0)); transition: transform 600ms var(--ch-expo); pointer-events: none; }
-  .cabecera .boton { min-height: 44px; padding-inline: var(--ch-esp-5); }
+  .cabecera .boton { min-height: 44px; padding-inline: var(--ch-esp-6); }
   .menu-movil { display: none; position: relative; }
   .menu-movil summary { list-style: none; cursor: pointer; min-height: 44px; padding-inline: var(--ch-esp-4); }
   .menu-movil summary::-webkit-details-marker { display: none; }
@@ -119,37 +128,49 @@
     .cabecera .solo-ancho { display: none; }
   }
 
-  /* Hero · patrón «tipografía monumental integrada en la escena», centrado.
-     Capas: campo de caña a sangre (cielo arriba) · palabra CHANCAY gigante en el cielo (decorativa) ·
-     la botella enmarcada sube desde el campo y tapa la base de la palabra (menos del 35 % de su alto) ·
-     título real, frase de apoyo y pedido en el eje, sobre el velo oscuro del campo. */
+  /* Hero · protagonista: la botella del Cogollo Premium, recortada, en el centro y en 3D.
+     Sin foto de fondo: noche azul con luz dorada detrás de la botella. Capas (de atrás hacia delante):
+     palabra monumental decorativa · halo dorado · grosor de vidrio (capas desplazadas en Z) · botella · brillo especular · sombra de contacto.
+     La botella gira con el puntero (o con el dedo al arrastrar) y flota en reposo; texto y botones no dependen del efecto. */
   .sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-  .hero { position: relative; isolation: isolate; min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; padding-block: clamp(84px, 11svh, 104px) 56px; overflow: hidden; text-align: center; }
-  .hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 24%; z-index: -1; background: linear-gradient(180deg, rgb(10 17 34 / 0) 0%, var(--ch-noche-profunda) 100%); pointer-events: none; }
-  /* Fondo: el cielo queda casi limpio para la palabra; el campo se oscurece donde va el texto */
-  .hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, rgb(16 26 49 / .45) 0%, rgb(16 26 49 / .3) 30%, rgb(16 26 49 / .78) 56%, rgb(10 17 34 / .94) 74%, var(--ch-noche-profunda) 100%), url("assets/img/fondo-cana.webp") center 30% / cover no-repeat var(--ch-noche); }
-  .hero-palabra { position: relative; z-index: -1; justify-self: center; margin: 0; max-width: none; font: 700 clamp(2.75rem, 12.5vw, 12rem)/.8 var(--ch-font-titular); letter-spacing: .01em; text-transform: uppercase; color: rgb(226 200 143 / .62); white-space: nowrap; user-select: none; pointer-events: none; }
-  .hero .wrap { display: grid; justify-items: center; grid-template-columns: minmax(0, 1fr); grid-template-areas: "media" "titulo" "lead" "compra" "nota"; }
-  .hero { --foto: min(100%, 36svh, 380px); }
-  .escena-parallax { grid-area: media; width: var(--foto); margin-top: calc(clamp(2.75rem, 12.5vw, 12rem) * -.24); }
+  .hero { --alto: clamp(340px, calc(100svh - 340px), 760px); --foto: calc(var(--alto) * .62); position: relative; isolation: isolate; min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; padding-block: clamp(84px, 11svh, 104px) 40px; overflow: hidden; text-align: center; }
+  .hero.oscuro, #lineas.oscuro { background: transparent; }
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, rgb(16 26 49 / .4) 0%, rgb(16 26 49 / .3) 30%, rgb(16 26 49 / .66) 58%, rgb(16 26 49 / .84) 82%, rgb(16 26 49 / .6) 100%), url("assets/img/fondo-cana.webp") center 30% / cover no-repeat; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%); pointer-events: none; }
+  .hero-palabra { position: relative; z-index: 3; justify-self: center; margin: 0; max-width: none; font: 700 clamp(1.75rem, 12.5vw, 12rem)/.8 var(--ch-font-titular); letter-spacing: .01em; text-transform: uppercase; color: rgb(226 200 143 / .72); white-space: nowrap; user-select: none; pointer-events: none; }
+  .hero .wrap { display: grid; justify-items: center; grid-template-columns: minmax(0, 1fr); grid-template-areas: "media" "titulo" "cue"; }
+  .escena-parallax { grid-area: media; margin-top: calc(clamp(2.75rem, 12.5vw, 12rem) * -.04); }
   .hero-cifra { display: none; }
-  .hero h1 { grid-area: titulo; margin-top: var(--ch-esp-5); font-size: clamp(2.25rem, 2vw + 1.25rem, 3.5rem); line-height: 1; letter-spacing: -0.02em; }
+  .hero h1 { grid-area: titulo; margin-top: var(--ch-esp-6); font-size: clamp(2.25rem, 2vw + 1.25rem, 3.5rem); line-height: 1; letter-spacing: -0.02em; }
   .hero h1 .l { display: block; white-space: nowrap; }
   .hero h1 .l--dorado { color: var(--ch-dorado-brillo); }
   .hero .lead { grid-area: lead; margin: var(--ch-esp-4) auto 0; color: var(--ch-blanco); font-size: 1.125rem; max-width: 62ch; }
 
-  /* La foto: pieza oficial completa, cuadrada, en un marco que flota; es el único objeto con sombra e inclina con el puntero */
-  .escena { position: relative; perspective: 1100px; isolation: isolate; }
-  .marco-hero { position: relative; margin: 0; aspect-ratio: 1; border-radius: var(--ch-radio-tarjeta); overflow: hidden; background: var(--ch-noche-profunda); box-shadow: 0 40px 70px -28px rgb(0 0 0 / .75); transform: rotateY(calc(var(--ry, 0) * 1deg)) rotateX(calc(var(--rx, 0) * 1deg)); transform-style: preserve-3d; }
-  .marco-hero img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Letras de CHANCAYANO: se arman al cargar y al volver al inicio, y se desarman al bajar (las mueve el script con --d por letra) */
+  .hero-palabra .ltr { display: inline-block; transform: translate(calc(var(--dx, 0) * var(--d, 0) * 1px), calc(var(--dy, 0) * var(--d, 0) * 1px)) rotate(calc(var(--rt, 0) * var(--d, 0) * 1deg)) scale(calc(1 - var(--d, 0) * .14)); opacity: calc(1 - var(--d, 0) * 1.15); will-change: transform, opacity; }
+  /* Salida y entrada del inicio: --p va de 0 (arriba) a 1 (fuera de la primera pantalla). Es reversible: al volver, todo regresa. */
+  .hero { --p: 0; }
+  .escena-parallax { translate: 0 calc(var(--p) * -70px); scale: calc(1 - var(--p) * .1); opacity: calc(1 - var(--p) * 1.05); }
+  .hero h1 { translate: 0 calc(var(--p) * -90px); opacity: calc(1 - var(--p) * 1.3); }
+  .hero-cue { translate: 0 calc(var(--p) * -110px); opacity: calc(1 - var(--p) * 1.5); }
+  .hero-cifra--a { translate: calc(var(--p) * -80px) 0; opacity: calc(1 - var(--p) * 1.4); }
+  .hero-cifra--b { translate: calc(var(--p) * 80px) 0; opacity: calc(1 - var(--p) * 1.4); }
+
+  /* Botella 3D real: modelo glTF (cogollo-premium-vidrio-natural.glb) con <model-viewer>. Gira sola y se arrastra; el PNG recortado es el respaldo mientras carga o si falla */
+  .escena { position: relative; width: var(--foto); height: var(--alto); }
+  model-viewer.botella { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; --poster-color: transparent; --progress-bar-color: transparent; --progress-mask: transparent; touch-action: pan-y; cursor: grab; outline: none; animation: ch-subir 1400ms var(--ch-expo) backwards 150ms; }
+  model-viewer.botella:active { cursor: grabbing; }
+  model-viewer.botella:focus-visible { outline: 2px solid var(--ch-dorado-brillo); outline-offset: 6px; border-radius: 24px; }
+  model-viewer.botella .botella-poster { width: 100%; height: 100%; object-fit: contain; display: block; }
+  @keyframes ch-subir { from { opacity: 0; transform: translateY(60px) scale(.92); } }
 
   /* Pedido en el eje: tamaño, precio y botón juntos, en una fila desde 700 px */
   .ficha-compra { grid-area: compra; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "tamanos precio" "boton boton"; align-items: center; gap: var(--ch-esp-3) var(--ch-esp-4); width: min(100%, 22rem); margin-top: var(--ch-esp-5); }
   .fc-tamanos { grid-area: tamanos; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ch-esp-2); margin: 0; padding: 0; border: 0; min-width: 0; }
   .fc-tamanos label { position: relative; display: block; cursor: pointer; }
   .fc-tamanos input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
-  .fc-tamanos span { display: flex; align-items: center; justify-content: center; min-height: 48px; padding-inline: 14px; border-radius: var(--ch-radio-boton); background: rgb(255 255 255 / .09); color: var(--ch-texto-noche-suave); font-weight: 600; white-space: nowrap; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo), scale 160ms var(--ch-expo); }
-  .fc-tamanos input:checked + span { background: rgb(197 162 100 / .26); color: var(--ch-dorado-brillo); }
+  .fc-tamanos span { display: flex; align-items: center; justify-content: center; min-height: 52px; padding-inline: 14px; border-radius: var(--ch-radio-pildora); background: rgb(255 255 255 / .09); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .14); color: var(--ch-texto-noche-suave); font-weight: 600; white-space: nowrap; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo), scale 160ms var(--ch-expo); }
+  .fc-tamanos input:checked + span { background: rgb(197 162 100 / .26); box-shadow: inset 0 0 0 1.5px var(--ch-dorado); color: var(--ch-dorado-brillo); }
   .fc-tamanos input:focus-visible + span { outline: 2px solid var(--ch-dorado); outline-offset: 3px; }
   .fc-tamanos label:active span { scale: .97; }
   @media (hover: hover) and (pointer: fine) { .fc-tamanos input:not(:checked):hover + span { background: rgb(255 255 255 / .14); color: var(--ch-blanco); } }
@@ -159,15 +180,16 @@
   .fc-precio output.cambio { animation: ch-precio 180ms var(--ch-expo); }
   @keyframes ch-precio { from { opacity: .2; transform: translateY(4px); } }
   .fc-compra .boton { grid-area: boton; width: 100%; }
+  .intro p, .linea .texto p { text-wrap: pretty; }
+  .hero-cue { grid-area: cue; margin-top: var(--ch-esp-5); min-height: 48px; }
   .fc-nota { grid-area: nota; max-width: 72ch; margin: var(--ch-esp-4) auto 0; font-size: .875rem; line-height: 1.45; color: var(--ch-texto-noche-suave); }
   @media (min-width: 700px) {
     .ficha-compra { width: auto; grid-template-columns: 12rem auto 15rem; grid-template-areas: "tamanos precio boton"; column-gap: var(--ch-esp-5); }
   }
   /* Escritorio: dos cifras verificadas flanquean la botella, como en la referencia */
   @media (min-width: 1080px) {
-    .hero { --foto: min(36svh, 380px); }
-    .hero .wrap { grid-template-columns: minmax(0, 1fr) var(--foto) minmax(0, 1fr); grid-template-areas: "cifra-a media cifra-b" "titulo titulo titulo" "lead lead lead" "compra compra compra" "nota nota nota"; column-gap: var(--ch-esp-8); }
-    .hero-cifra { display: grid; gap: 4px; align-self: end; margin: 0 0 var(--ch-esp-6); }
+    .hero .wrap { grid-template-columns: minmax(0, 1fr) var(--foto) minmax(0, 1fr); grid-template-areas: "cifra-a media cifra-b" "titulo titulo titulo" "cue cue cue"; column-gap: var(--ch-esp-8); }
+    .hero-cifra { display: grid; gap: 4px; align-self: center; margin: 0; text-shadow: 0 2px 14px rgb(10 17 34 / .75); }
     .hero-cifra--a { grid-area: cifra-a; justify-self: end; text-align: right; }
     .hero-cifra--b { grid-area: cifra-b; justify-self: start; text-align: left; }
     .hero-cifra strong { font: 500 clamp(2rem, 1.4vw + 1rem, 2.75rem)/1 var(--ch-font-titular); color: var(--ch-blanco); font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -176,29 +198,25 @@
   @media (max-width: 559px) {
     .hero .lead { font-size: 1.0625rem; }
     .hero h1 { margin-top: var(--ch-esp-5); }
-    .hero { --foto: min(100%, 34svh, 300px); }
+    .hero { --alto: clamp(300px, calc(100svh - 360px), 520px); }
   }
 
   /* Carga del hero: el título sube por líneas, la botella se abre como un obturador */
   @keyframes ch-aparecer { from { opacity: 0; transform: translateY(24px); } }
   @keyframes ch-linea { from { clip-path: inset(0 0 100% 0); transform: translateY(30%); } to { clip-path: inset(0 0 -12% 0); transform: none; } }
-  @keyframes ch-obturador { from { clip-path: inset(48% 0 48% 0); } to { clip-path: inset(0 0 0 0); } }
-  @keyframes ch-enfoque { from { transform: scale(1.18); } }
-  .hero h1 .l { display: block; animation: ch-linea var(--ch-dur-hero) var(--ch-expo) both; }
+  .hero h1 .l { display: block; animation: ch-linea var(--ch-dur-hero) var(--ch-expo) backwards; }
   .hero h1 .l:nth-child(2) { animation-delay: 90ms; }
-  .hero-palabra { animation: ch-palabra 1400ms var(--ch-expo) both; }
-  @keyframes ch-palabra { from { opacity: 0; letter-spacing: .12em; } }
-  .hero .lead, .hero-cifra, .ficha-compra, .fc-nota { animation: ch-aparecer var(--ch-dur-hero) var(--ch-expo) both; animation-delay: 320ms; }
+  .hero .lead, .hero-cifra, .ficha-compra, .fc-nota, .hero-cue { animation: ch-aparecer var(--ch-dur-hero) var(--ch-expo) backwards; animation-delay: 320ms; }
   .hero-cifra { animation-delay: 450ms; }
-  .ficha-compra, .fc-nota { animation-delay: 400ms; }
-  .marco-hero { animation: ch-obturador 1300ms var(--ch-expo) backwards; animation-delay: 150ms; }
-  .marco-hero img { animation: ch-enfoque 1800ms var(--ch-expo) backwards; animation-delay: 150ms; }
+  .ficha-compra, .fc-nota, .hero-cue { animation-delay: 400ms; }
+
+  /* Hero y líneas comparten un solo fondo: noche azul con resplandores azules que bajan por ambas secciones */
+  .bloque-inicio { background: linear-gradient(180deg, #1e3a86 0%, #1a3074 18%, #14245a 42%, #0f1c42 68%, var(--ch-noche) 100%); }
 
   /* Fondo de hileras de caña para la sección de líneas: velo azul noche para que las tarjetas destaquen;
      el borde superior e inferior se desvanece para no cortar la imagen. */
   #lineas { position: relative; isolation: isolate; overflow: hidden; }
-  #lineas::after { content: ""; position: absolute; inset: 0 0 auto 0; height: clamp(120px, 18vw, 240px); z-index: -1; background: linear-gradient(180deg, var(--ch-noche-profunda) 0%, rgb(10 17 34 / 0) 100%); pointer-events: none; }
-  #lineas::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(16 26 49 / .9) 0%, rgb(16 26 49 / .8) 50%, rgb(16 26 49 / .9) 100%), url("assets/img/fondo-hileras.webp") center / cover no-repeat; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); }
+  #lineas::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(28 50 118 / .62) 0%, rgb(22 38 92 / .74) 55%, rgb(16 26 49 / .8) 100%), url("assets/img/fondo-hileras.webp") center / cover no-repeat; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 88%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 88%, transparent 100%); pointer-events: none; }
 
   /* Líneas */
   /* Mosaico de líneas: Premium grande, cuatro líneas medianas y la edición especial como franja horizontal.
@@ -296,7 +314,7 @@
   .tamanos legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .tamanos label { position: relative; }
   .tamanos input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-  .tamanos span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--ch-esp-5); border: 1px solid rgb(28 42 67 / .25); border-radius: var(--ch-radio-boton); font-weight: 600; font-size: .9375rem; font-variant-numeric: tabular-nums; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo), border-color var(--ch-dur-hover) var(--ch-expo), scale 160ms var(--ch-expo); }
+  .tamanos span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--ch-esp-5); border: 1px solid rgb(28 42 67 / .25); border-radius: var(--ch-radio-pildora); font-weight: 600; font-size: .9375rem; font-variant-numeric: tabular-nums; transition: background var(--ch-dur-hover) var(--ch-expo), color var(--ch-dur-hover) var(--ch-expo), border-color var(--ch-dur-hover) var(--ch-expo), scale 160ms var(--ch-expo); }
   .tamanos label:active span { scale: .97; }
   .tamanos input:checked + span { background: var(--ch-azul); border-color: var(--ch-azul); color: var(--ch-blanco); }
   .tamanos input:focus-visible + span { outline: 2px solid var(--ch-azul); outline-offset: 3px; }
@@ -371,8 +389,6 @@
       .origen-foto { animation: ch-ventana linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
       .origen-foto img { animation: ch-zoom linear both; animation-timeline: view(); animation-range: entry 0% exit 0%; }
       .filete { animation: ch-trazo linear both; animation-timeline: view(); animation-range: entry 20% cover 30%; }
-      .escena-parallax { animation: ch-parallax linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
-      .hero-palabra { animation: ch-palabra 1400ms var(--ch-expo) both, ch-palabra-scroll linear both; animation-timeline: auto, scroll(root); animation-range: normal, 0 100vh; }
       /* El campo de caña del hero se acerca despacio al bajar */
       .hero::before { animation: ch-acercar linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
       /* Las piezas del mosaico entran escalonadas por columna */
@@ -386,9 +402,9 @@
   .sin-timeline .origen-foto:not(.visible) { opacity: 0; transform: translateY(28px); }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero h1 .l, .hero .lead, .hero-cifra, .ficha-compra, .fc-nota, .marco-hero, .marco-hero img, .fc-precio output.cambio { animation: none; }
+    .hero h1 .l, .hero .lead, .hero-cifra, .ficha-compra, .fc-nota, .hero-cue, model-viewer.botella, .fc-precio output.cambio { animation: none; }
     .hero-palabra { animation: ch-desvanecer 300ms ease both; }
-    .marco-hero { transform: none; }
+    .botella-pista { display: none; }
     .linea:hover .marco img { transform: none; }
     .linea:hover { translate: none; }
     .menu-movil[open] .menu-movil-panel { animation-name: ch-desvanecer; }
@@ -415,7 +431,7 @@
   #cocktails::after { background-image: url("assets/img/fondo-cocktails-cana.webp"); }
   #origen { background: url("assets/img/fondo-origen.webp") center / cover no-repeat; }
   @media (max-width: 959px) {
-    #origen { background: linear-gradient(180deg, rgb(16 26 49 / .9), rgb(16 26 49 / .82)), url("assets/img/fondo-origen.webp") 30% center / cover no-repeat; }
+    #origen { background: linear-gradient(180deg, rgb(16 26 49 / .8), rgb(16 26 49 / .74)), url("assets/img/fondo-origen.webp") 30% center / cover no-repeat; }
   }
   .cierre { background: url("assets/img/fondo-cierre.webp") center / cover no-repeat; }
   /* Cierre como franja: en escritorio el texto va a la izquierda y los dos botones a la derecha, en la misma línea */
@@ -458,8 +474,8 @@
      Cada sección abre con su palabra monumental (decorativa, aria-hidden), el título centrado,
      el filete centrado y el contenido en el eje. La palabra entra con un ascenso corto y
      vuelve a su sitio con el scroll; sin movimiento con prefers-reduced-motion. */
-  .palabra-sec { display: block; margin: 0 auto var(--ch-esp-5); font: 700 var(--tam, clamp(2.75rem, 12.5vw, 12rem))/.8 var(--ch-font-titular); letter-spacing: .01em; text-transform: uppercase; color: rgb(226 200 143 / .34); white-space: nowrap; text-align: center; user-select: none; pointer-events: none; }
-  .claro .palabra-sec, .niebla .palabra-sec { color: rgb(138 106 46 / .16); }
+  .palabra-sec { display: block; margin: 0 auto var(--ch-esp-5); font: 700 var(--tam, clamp(2.75rem, 12.5vw, 12rem))/.8 var(--ch-font-titular); letter-spacing: .01em; text-transform: uppercase; color: rgb(226 200 143 / .58); white-space: nowrap; text-align: center; user-select: none; pointer-events: none; }
+  .claro .palabra-sec, .niebla .palabra-sec { color: rgb(138 106 46 / .82); }
   .intro { justify-items: center; text-align: center; }
   .intro .filete { margin-inline: auto; }
   .intro p { margin-inline: auto; max-width: 58ch; }
@@ -525,32 +541,25 @@
 
 <main id="contenido">
 
+  <div class="bloque-inicio">
   <section class="hero oscuro" id="inicio" aria-labelledby="t-hero">
-    <p class="hero-palabra" aria-hidden="true">Chancayano</p>
+    <p class="hero-palabra" aria-hidden="true"><span class="ltr">C</span><span class="ltr">h</span><span class="ltr">a</span><span class="ltr">n</span><span class="ltr">c</span><span class="ltr">a</span><span class="ltr">y</span><span class="ltr">a</span><span class="ltr">n</span><span class="ltr">o</span></p>
     <div class="wrap">
-      <p class="hero-cifra hero-cifra--a"><strong>2002</strong><span>Elaborado desde</span></p>
+      <p class="hero-cifra hero-cifra--a"><span>Elaborado desde</span><strong>2002</strong></p>
       <div class="escena-parallax">
         <div class="escena" id="escena">
-          <figure class="marco-hero">
-            <img src="assets/img/entry-content-post-2024.webp" alt="Botella de Aguardiente Cogollo Premium de 500 ml sobre una mesa de madera, junto a un vaso y trozos de caña, con una ventana al cañaveral" width="1500" height="1500" fetchpriority="high">
-          </figure>
+          <model-viewer class="botella" id="botella" src="assets/img/cogollo-premium-vidrio-natural.glb" poster="assets/img/cogollo-botella-poster.webp"
+            alt="Botella de Aguardiente Cogollo Premium de 500 ml en 3D, con etiqueta azul y dorada. Arrástrala para girarla"
+            camera-controls disable-zoom disable-pan auto-rotate-delay="2500" rotation-per-second="28deg" interaction-prompt="none"
+            camera-orbit="-18deg 82deg auto" min-camera-orbit="auto 62deg auto" max-camera-orbit="auto 98deg auto" field-of-view="15deg"
+            environment-image="neutral" exposure="1" shadow-intensity="0.9" shadow-softness="1" reveal="auto" loading="eager">
+            <img slot="poster" class="botella-poster" src="assets/img/cogollo-botella-poster.webp" alt="Botella de Aguardiente Cogollo Premium de 500 ml" width="232" height="585" fetchpriority="high">
+          </model-viewer>
         </div>
       </div>
-      <p class="hero-cifra hero-cifra--b"><strong>56 % vol.</strong><span>Cogollo Premium</span></p>
+      <p class="hero-cifra hero-cifra--b"><span>Cogollo Premium</span><strong>56 % vol.</strong></p>
       <h1 id="t-hero"><span class="l">Cogollo Premium</span><span class="l l--dorado">de Chancay Baños</span></h1>
-      <p class="lead">Aguardiente artesanal de caña de azúcar, destilado en Santa Cruz, Cajamarca. También hay destilados, macerados y cocktails.</p>
-      <form class="ficha-compra" id="ficha-hero" aria-label="Pedir Aguardiente Cogollo Premium" onsubmit="return false">
-        <fieldset class="fc-tamanos">
-          <legend class="sr">Tamaño de la botella</legend>
-          <label><input type="radio" name="tamano-hero" value="500" checked><span>500 ml</span></label>
-          <label><input type="radio" name="tamano-hero" value="50"><span>50 ml</span></label>
-        </fieldset>
-        <div class="fc-compra">
-          <p class="fc-precio"><span class="sr">Precio: </span><output id="fc-precio" for="ficha-hero" aria-live="polite">S/ 70.00</output></p>
-          <a class="boton boton--dorado" id="fc-pedir" href="https://wa.me/51901681957?text=Hola%2C%20quiero%20pedir%20Aguardiente%20Cogollo%20Premium%20500%20ml%20(S%2F%2070.00).">Pedir por WhatsApp</a>
-        </div>
-      </form>
-      <p class="fc-nota">Venta solo a mayores de 18 años. Tomar bebidas alcohólicas en exceso es dañino.</p>
+      <a class="boton boton--fantasma hero-cue" href="#lineas">Ver las botellas <svg class="flecha flecha--abajo" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4v12M4.5 10.5 10 16l5.5-5.5"/></svg></a>
     </div>
   </section>
 
@@ -590,6 +599,7 @@
       </div>
     </div>
   </section>
+  </div>
 
   <section class="seccion claro" id="presentaciones" aria-labelledby="t-pres">
     <div class="wrap">
@@ -803,24 +813,63 @@
     }
   }
 
-  // Inclinación del hero que sigue al puntero, con interpolación suave
-  const escena = document.getElementById('escena');
-  const marco = escena && escena.querySelector('.marco-hero');
-  if (marco && !reducido && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let tx = 0, ty = 0, x = 0, y = 0, activo = false;
-    const paso = () => {
-      x += (tx - x) * 0.12; y += (ty - y) * 0.12;
-      marco.style.setProperty('--ry', x.toFixed(2)); marco.style.setProperty('--rx', y.toFixed(2));
-      if (Math.abs(tx - x) > 0.01 || Math.abs(ty - y) > 0.01) requestAnimationFrame(paso); else activo = false;
-    };
-    const arrancar = () => { if (!activo) { activo = true; requestAnimationFrame(paso); } };
-    escena.addEventListener('pointermove', (e) => {
-      const r = escena.getBoundingClientRect();
-      tx = ((e.clientX - r.left) / r.width - 0.5) * 8; // ±4°
-      ty = -((e.clientY - r.top) / r.height - 0.5) * 6;
-      arrancar();
+  // Botella 3D del hero (model-viewer): empieza de frente (etiqueta visible) y a los 3 s gira sola, salvo con movimiento reducido.
+  // El vidrio se deja tal como viene en el modelo (transparente); solo se suaviza el brillo de tapa, borde y etiquetas.
+  const botella = document.getElementById('botella');
+  if (botella) {
+    botella.addEventListener('load', () => {
+      const ajuste = { 'Tapa marfil': [0.45, 0], 'Borde dorado': [0.35, 0.5], 'Etiqueta azul': [0.5, 0], 'Impresion original': [0.55, 0] };
+      for (const mat of botella.model.materials) {
+        const a = ajuste[mat.name]; if (!a) continue;
+        mat.pbrMetallicRoughness.setRoughnessFactor(a[0]);
+        if (a[1] !== null) mat.pbrMetallicRoughness.setMetallicFactor(a[1]);
+      }
     });
-    escena.addEventListener('pointerleave', () => { tx = 0; ty = 0; arrancar(); });
+    if (!reducido) {
+      const girar = () => botella.setAttribute('auto-rotate', '');
+      botella.addEventListener('load', () => setTimeout(girar, 3000), { once: true });
+      setTimeout(() => { if (!botella.hasAttribute('auto-rotate')) girar(); }, 6000); // por si «load» no llega
+    }
+  }
+
+  // Inicio: letras que se arman y se desarman, y salida/entrada del resto al bajar o volver
+  const heroSec = document.getElementById('inicio');
+  if (heroSec && !reducido) {
+    const letras = [...heroSec.querySelectorAll('.hero-palabra .ltr')];
+    const n = letras.length;
+    // dispersión propia de cada letra (px, px, grados): fija, para que el armado siempre se vea igual
+    const disp = [[-150,-110,-22],[90,70,14],[-70,-130,-10],[160,60,18],[-100,90,-16],[70,-120,9],[-160,50,-18],[110,100,12],[-60,-90,-8],[140,-70,16]];
+    const orden = [4,1,7,0,9,3,6,2,8,5];                 // en qué orden se desarman/arman (mezclado, no de izquierda a derecha)
+    const suave = (t) => 1 - Math.pow(1 - t, 3);          // ease-out cúbica
+    letras.forEach((l, i) => { const d = disp[i % disp.length]; l.style.setProperty('--dx', d[0]); l.style.setProperty('--dy', d[1]); l.style.setProperty('--rt', d[2]); });
+    let carga = 1, p = 0, pendiente = false;               // carga: 1 = disperso, 0 = armado
+    const pintar = () => {
+      pendiente = false;
+      const total = Math.max(carga, p);
+      letras.forEach((l, i) => {
+        const k = orden[i % orden.length] / (n - 1);      // 0..1, posición en el orden
+        const local = Math.min(1, Math.max(0, (total * 1.5 - k * 0.5)));
+        l.style.setProperty('--d', (1 - suave(1 - local)).toFixed(3));
+      });
+      heroSec.style.setProperty('--p', (p * p * (3 - 2 * p)).toFixed(3));  // smoothstep: arranca y termina despacio
+    };
+    const pedir = () => { if (!pendiente) { pendiente = true; requestAnimationFrame(pintar); } };
+    const medir = () => { p = Math.min(1, Math.max(0, scrollY / (heroSec.offsetHeight * 0.9))); pedir(); };
+    addEventListener('scroll', medir, { passive: true });
+    addEventListener('resize', medir);
+    pintar();
+    // armado inicial: 1,5 s, cuando la tipografía ya está lista
+    const arrancar = () => {
+      const t0 = performance.now(), dur = 1700;
+      const paso = (t) => {
+        const x = Math.min(1, (t - t0) / dur);
+        carga = 1 - x; pintar();
+        if (x < 1) requestAnimationFrame(paso);
+      };
+      setTimeout(() => requestAnimationFrame(paso), 250);
+    };
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(arrancar);
+    medir();
   }
 
   // Ficha del hero: el tamaño cambia el precio y el mensaje de WhatsApp
@@ -1069,6 +1118,40 @@
       setTimeout(() => { if (!conFotogramas) { usarTemporizador = true; paso(performance.now()); } }, 150);
     });
   });
+
+  // La URL sigue a la sección visible (#inicio, #lineas, #presentaciones, #origen, #cocktails, #contacto).
+  // Al desplazarse se usa replaceState (no llena el historial); los clics en enlaces ya usan pushState.
+  const IDS = ['inicio', 'lineas', 'presentaciones', 'origen', 'cocktails', 'contacto'];
+  const secciones = IDS.map((id) => document.getElementById(id)).filter(Boolean);
+  const actual = () => {
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) return secciones[secciones.length - 1].id;
+    let id = secciones[0].id;
+    for (const sec of secciones) { if (sec.getBoundingClientRect().top <= innerHeight * 0.4) id = sec.id; }
+    return id;
+  };
+  let pendiente = false;
+  const sincronizar = () => {
+    pendiente = false;
+    if (document.documentElement.classList.contains('saltando')) return;   // en pleno desplazamiento de un clic, manda su destino
+    const id = actual();
+    if (location.hash !== '#' + id) history.replaceState(history.state, '', '#' + id);
+  };
+  addEventListener('scroll', () => { if (!pendiente) { pendiente = true; requestAnimationFrame(sincronizar); } }, { passive: true });
+  // Al abrir con un hash (compartido o recargado) se descuenta la cabecera fija; sin hash, la URL pasa a #inicio.
+  addEventListener('load', () => {
+    const id = location.hash.slice(1);
+    const destino = id && IDS.includes(id) ? document.getElementById(id) : null;
+    if (destino && id !== 'inicio') window.scrollTo(0, Math.max(0, destino.getBoundingClientRect().top + scrollY - CABECERA));
+    else if (!id) history.replaceState(null, '', '#inicio');
+  });
+  // Atrás y adelante del navegador llevan a su sección, con desplazamiento suave.
+  addEventListener('hashchange', () => {
+    const id = location.hash.slice(1);
+    const destino = IDS.includes(id) ? document.getElementById(id) : null;
+    if (!destino) return;
+    const top = id === 'inicio' ? 0 : Math.max(0, destino.getBoundingClientRect().top + scrollY - CABECERA);
+    window.scrollTo({ top, behavior: reducir ? 'auto' : 'smooth' });
+  });
 })();
 </script>
 <div class="avisocookies" role="region" aria-label="Aviso de cookies" hidden>
@@ -1112,5 +1195,6 @@
   </div>
 </dialog>
 <script src="assets/animaciones.js?v=2" defer></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 </body>
 </html>
