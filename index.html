@@ -148,6 +148,10 @@
 
   /* Letras de CHANCAYANO: se arman al cargar y al volver al inicio, y se desarman al bajar (las mueve el script con --d por letra) */
   .hero-palabra .ltr { display: inline-block; transform: translate(calc(var(--dx, 0) * var(--d, 0) * 1px), calc(var(--dy, 0) * var(--d, 0) * 1px)) rotate(calc(var(--rt, 0) * var(--d, 0) * 1deg)) scale(calc(1 - var(--d, 0) * .14)); opacity: calc(1 - var(--d, 0) * 1.15); will-change: transform, opacity; }
+  /* Aparición inicial: cada letra surge en su sitio, de izquierda a derecha, desde borrosa y un poco más pequeña */
+  @keyframes ch-aparece-letra { from { opacity: 0; transform: translateY(10px) scale(.94); filter: blur(10px); } }
+  .hero-palabra .ltr { animation: ch-aparece-letra 700ms var(--ch-expo) backwards; animation-delay: calc(120ms + var(--i, 0) * 60ms); }
+  @media (prefers-reduced-motion: reduce) { .hero-palabra .ltr { animation: none; } }
   /* Salida y entrada del inicio: --p va de 0 (arriba) a 1 (fuera de la primera pantalla). Es reversible: al volver, todo regresa. */
   .hero { --p: 0; }
   .escena-parallax { translate: 0 calc(var(--p) * -70px); scale: calc(1 - var(--p) * .1); opacity: calc(1 - var(--p) * 1.05); }
@@ -550,7 +554,7 @@
         <div class="escena" id="escena">
           <model-viewer class="botella" id="botella" src="assets/img/cogollo-premium-vidrio-natural.glb" poster="assets/img/cogollo-botella-poster.webp"
             alt="Botella de Aguardiente Cogollo Premium de 500 ml en 3D, con etiqueta azul y dorada. Arrástrala para girarla"
-            camera-controls disable-zoom disable-pan auto-rotate-delay="2500" rotation-per-second="28deg" interaction-prompt="none"
+            camera-controls disable-zoom disable-pan auto-rotate-delay="1200" rotation-per-second="28deg" interaction-prompt="none"
             camera-orbit="-18deg 82deg auto" min-camera-orbit="auto 62deg auto" max-camera-orbit="auto 98deg auto" field-of-view="15deg"
             environment-image="neutral" exposure="1" shadow-intensity="0.9" shadow-softness="1" reveal="auto" loading="eager">
             <img slot="poster" class="botella-poster" src="assets/img/cogollo-botella-poster.webp" alt="Botella de Aguardiente Cogollo Premium de 500 ml" width="232" height="585" fetchpriority="high">
@@ -813,7 +817,7 @@
     }
   }
 
-  // Botella 3D del hero (model-viewer): empieza de frente (etiqueta visible) y a los 3 s gira sola, salvo con movimiento reducido.
+  // Botella 3D del hero (model-viewer): empieza de frente (etiqueta visible) y a los 0,2 s gira sola, salvo con movimiento reducido.
   // El vidrio se deja tal como viene en el modelo (transparente); solo se suaviza el brillo de tapa, borde y etiquetas.
   const botella = document.getElementById('botella');
   if (botella) {
@@ -827,8 +831,8 @@
     });
     if (!reducido) {
       const girar = () => botella.setAttribute('auto-rotate', '');
-      botella.addEventListener('load', () => setTimeout(girar, 3000), { once: true });
-      setTimeout(() => { if (!botella.hasAttribute('auto-rotate')) girar(); }, 6000); // por si «load» no llega
+      botella.addEventListener('load', () => setTimeout(girar, 200), { once: true });
+      setTimeout(() => { if (!botella.hasAttribute('auto-rotate')) girar(); }, 2500); // por si «load» no llega
     }
   }
 
@@ -841,8 +845,8 @@
     const disp = [[-150,-110,-22],[90,70,14],[-70,-130,-10],[160,60,18],[-100,90,-16],[70,-120,9],[-160,50,-18],[110,100,12],[-60,-90,-8],[140,-70,16]];
     const orden = [4,1,7,0,9,3,6,2,8,5];                 // en qué orden se desarman/arman (mezclado, no de izquierda a derecha)
     const suave = (t) => 1 - Math.pow(1 - t, 3);          // ease-out cúbica
-    letras.forEach((l, i) => { const d = disp[i % disp.length]; l.style.setProperty('--dx', d[0]); l.style.setProperty('--dy', d[1]); l.style.setProperty('--rt', d[2]); });
-    let carga = 1, p = 0, pendiente = false;               // carga: 1 = disperso, 0 = armado
+    letras.forEach((l, i) => { const d = disp[i % disp.length]; l.style.setProperty('--i', i); l.style.setProperty('--dx', d[0]); l.style.setProperty('--dy', d[1]); l.style.setProperty('--rt', d[2]); });
+    let carga = 0, p = 0, pendiente = false;               // carga: 0 = armado (la aparición inicial la hace el CSS)
     const pintar = () => {
       pendiente = false;
       const total = Math.max(carga, p);
@@ -858,17 +862,7 @@
     addEventListener('scroll', medir, { passive: true });
     addEventListener('resize', medir);
     pintar();
-    // armado inicial: 1,5 s, cuando la tipografía ya está lista
-    const arrancar = () => {
-      const t0 = performance.now(), dur = 1700;
-      const paso = (t) => {
-        const x = Math.min(1, (t - t0) / dur);
-        carga = 1 - x; pintar();
-        if (x < 1) requestAnimationFrame(paso);
-      };
-      setTimeout(() => requestAnimationFrame(paso), 250);
-    };
-    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(arrancar);
+    // La entrada inicial es una aparición por CSS (ver .hero-palabra .ltr); el script solo desarma/arma con el scroll
     medir();
   }
 
